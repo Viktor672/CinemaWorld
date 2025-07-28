@@ -1,13 +1,17 @@
 <header>
-    <ActiveNavLink to="/">Home</ActiveNavLink>
-    <div className="navigation">
-        <div className="navigation-items">
-            <ActiveNavLink to="/games">Games</ActiveNavLink>
-            <ActiveNavLink to="/about">About</ActiveNavLink>
-            <ActiveNavLink to="/create">Create</ActiveNavLink>
-            <ActiveNavLink to="/logout">Logout</ActiveNavLink>
-            <ActiveNavLink to="/login">Login</ActiveNavLink>
-            <ActiveNavLink to="/register">Register</ActiveNavLink>
-        </div>
+  <div class="nav-container">
+    <a routerLink="/home" class="brand">Home</a>
+
+    <div class="center-nav">
+      <a routerLink="/movies" routerLinkActive="active">Movies</a>
+      <a routerLink="/about" routerLinkActive="active">About</a>
+      <a routerLink="/create" routerLinkActive="active">Create</a>
     </div>
+
+    <div class="auth-nav">
+      <a routerLink="/logout" routerLinkActive="active">Logout</a>
+      <a routerLink="/login" routerLinkActive="active">Login</a>
+      <a routerLink="/register" routerLinkActive="active">Register</a>
+    </div>
+  </div>
 </header>
