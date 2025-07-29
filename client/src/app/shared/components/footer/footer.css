@@ -1,0 +1,28 @@
+.footer-bottom {
+  width: 100%;
+  color: #d6d6d6;
+  text-align: center;
+  margin: 0;
+  font-size: 0.9rem;
+  padding: 10px 0;
+  position: relative;
+  z-index: 2;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(3px);
+}
+
+.footer-bottom p {
+  margin: 0;
+  padding: 5px 0;
+  opacity: 0.9;
+  letter-spacing: 0.5px;
+}
+
+@media (max-width: 768px) {
+  .footer-bottom {
+    font-size: 0.8rem;
+    padding: 12px 0;
+  }
+}
+
+
