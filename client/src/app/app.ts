@@ -1,11 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { Header } from './shared/components';
+import { Footer, Header } from './shared/components';
+import { Home } from './features/home/home';
 
 @Component({
   selector: 'app-root',
-  imports: [Header, RouterOutlet],
+  imports: [Header, Footer, RouterOutlet],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
