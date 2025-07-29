@@ -1,13 +1,14 @@
 header {
-  position: fixed;
+  position: sticky;
   top: 0;
   left: 0;
   width: 100%;
   background: linear-gradient(to right, #121212, #1a1a2e);
   color: #ffffff;
-  padding: 18px 40px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-  z-index: 999;
+   z-index: 999;
+   margin-top: -60px;
+   padding: 15px;
 }
 
 .nav-container {
@@ -69,3 +70,4 @@ header {
 .auth-nav a:hover::after {
   width: 100%;
 }
+
