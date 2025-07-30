@@ -12,6 +12,10 @@ export const routes: Routes = [
         loadComponent: () => import('./features/home/home').then(component => component.Home)
     },
     {
+        path: 'movies',
+        loadComponent: () => import('./features/catalog-movies/movie-board/movie-board').then(component => component.MovieBoard)
+    },
+    {
         path: 'about',
         component: About
     }
