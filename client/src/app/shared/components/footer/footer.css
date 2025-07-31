@@ -1,6 +1,6 @@
 .footer-bottom {
   width: 100%;
-  color: #d6d6d6;
+  color: #ffffff;
   text-align: center;
   margin: 0;
   font-size: 0.9rem;
@@ -9,7 +9,7 @@
   padding: 10px 0;
   position: relative;
   z-index: 2;
-  background: rgba(0, 0, 0, 0.3);
+  background: none;
   backdrop-filter: blur(0px);
 }
 
