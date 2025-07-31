@@ -13,7 +13,7 @@ export const routes: Routes = [
     },
     {
         path: 'movies',
-        loadComponent: () => import('./features/catalog-movies/movie-board/movie-board').then(component => component.MovieBoard)
+        loadComponent: () => import('./features/movies-catalog/movie-board/movie-board').then(component => component.MovieBoard)
     },
     {
         path: 'about',

@@ -1,4 +1,4 @@
-import { AutoPlayVideo } from './auto-play-video';
+import { AutoPlayVideo } from './auto-play-video.directive';
 
 describe('AutoPlayVideo', () => {
   it('should create an instance', () => {
