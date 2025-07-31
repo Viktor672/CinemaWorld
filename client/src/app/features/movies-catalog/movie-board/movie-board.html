@@ -1,0 +1,28 @@
+<div class="page-container">
+    <video appAutoPlayVideo class="video-background" autoPlay muted loop playsinline preload="auto">
+        <source src="videos/particles.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+    </video>
+
+    <div class="content">
+        <div class="blog">
+            <div class="blog__container">
+                <div class="blog__header">
+                    <h2 class="blog__title">Latest Movies</h2>
+                    <p class="blog__subtitle">Stay updated with the newest movies, reviews, and insights from the
+                        world of cinema.</p>
+                </div>
+
+                <div class="blog__grid">
+                @if(movies.length <= 0) { <h2 class="no-games">No Games yet!</h2>
+                    }
+                    @else {
+                        @for(movie of movies; track movie._id) {
+                        <app-movie-item [movie]="movie"></app-movie-item>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
