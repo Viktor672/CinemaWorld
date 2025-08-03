@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { About } from './features/about/about';
+import { PageNotFound } from './shared/components';
 
 export const routes: Routes = [
     {
@@ -18,5 +19,9 @@ export const routes: Routes = [
     {
         path: 'about',
         component: About
+    },
+    {
+        path: '**',
+        component: PageNotFound
     }
 ];
