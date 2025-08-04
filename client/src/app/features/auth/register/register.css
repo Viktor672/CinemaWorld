@@ -1,0 +1,101 @@
+.register-page {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url('/images/cinema.jpg') no-repeat center center/cover;
+    position: relative;
+}
+
+.register-page::before {
+    content: "";
+    position: absolute;
+    top: -320px;
+    left: -320px;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.form {
+    font-family: "Roboto", sans-serif;
+    position: relative;
+    z-index: 1;
+    background-color: rgba(53, 43, 36, 0.85);
+    color: #f2e6d9;
+    opacity: 0.95;
+    max-width: 400px;
+    padding: 30px 50px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    border-radius: 12px;
+}
+
+.form p {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #cdc984;
+}
+
+.form input {
+    outline: 0;
+    border-radius: 10px;
+    width: 100%;
+    height: 50px;
+    border: 0;
+    margin-bottom: 20px;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+
+.form .register-input {
+    background-color: #b5bf7b;
+}
+
+.form .register-input:hover,
+.form .register-input:focus {
+    background-color: rgb(228, 255, 160);
+    transition: all 0.3s ease;
+}
+
+.register-btn-submit {
+    text-transform: uppercase;
+    outline: 0;
+    border-radius: 10px;
+    background: #aebb5f;
+    width: 100%;
+    height: 50px;
+    border: 0;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.register-btn-submit:hover,
+.register-btn-submit:active,
+.register-btn-submit:focus {
+    background-color: #cfe64c;
+}
+
+.form .message {
+    margin-top: 20px;
+    color: #aebb5f;
+    font-size: 14px;
+}
+
+.form .message a {
+    color: #a7bc1f;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.form .message a:hover {
+    color: #e0ff19;
+}
