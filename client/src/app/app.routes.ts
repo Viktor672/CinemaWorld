@@ -17,6 +17,10 @@ export const routes: Routes = [
         loadComponent: () => import('./features/movies-catalog/movie-board/movie-board').then(component => component.MovieBoard)
     },
     {
+        path: 'register',
+        loadComponent: () => import('./features/auth/register/register').then(component => component.Register)
+    },
+    {
         path: 'about',
         component: About
     },
