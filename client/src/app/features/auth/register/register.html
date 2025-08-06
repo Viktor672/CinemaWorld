@@ -1,14 +1,49 @@
 <div class="register-page">
-    <form class="form">
+    <form class="form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
         <b>
             <p>Register to Your Account</p>
         </b>
         <br />
-        <input class="register-input" type="text" id="username" name="username" placeholder="Username" />
-        <input class="register-input" type="email" id="email" name="email" placeholder="Email" />
-        <input class="register-input" type="password" id="password" name="password" placeholder="Password" />
-        <input class="register-input" type="password" id="rePassword" name="rePassword" placeholder="Repeat Password" />
-        <input class="register-btn-submit" type="submit" value="Register" />
+
+        <input class="register-input" [ngClass]="{'invalid-input': usernameValidationData.isInvalid}" type="text"
+            id="username" name="username" placeholder="Username" [appBlurValidator]="boundValidateForm"
+            formControlName="username" />
+        @if(usernameValidationData.isInvalid) {
+        <p class="error-message">
+            {{usernameValidationData.errorMessage}}
+        </p>
+        }
+
+        <input class="register-input" [ngClass]="{'invalid-input': emailValidationData.isInvalid}" type="email"
+            id="email" name="email" placeholder="Email" [appBlurValidator]="boundValidateForm"
+            formControlName="email" />
+        <div>
+            @if(emailValidationData.isInvalid){
+            <p class="error-message">
+                {{emailValidationData.errorMessage}}
+            </p>
+            }
+        </div>
+        <div formGroupName="passwords">
+            <input class="register-input" [ngClass]="{'invalid-input': passwordValidationData.isInvalid}"
+                type="password" id="password" name="password" placeholder="Password"
+                [appBlurValidator]="boundValidateForm" formControlName="password" />
+                @if(passwordValidationData.isInvalid){
+            <p class="error-message">
+                {{passwordValidationData.errorMessage}}
+            </p>
+                }
+
+            <input class="register-input" [ngClass]="{'invalid-input': rePasswordValidationData.isInvalid}"
+                type="password" id="rePassword" name="rePassword" placeholder="Repeat Password"
+                [appBlurValidator]="boundValidateForm" formControlName="rePassword" />
+                @if(rePasswordValidationData.isInvalid){
+                    <p class="error-message">
+                {{rePasswordValidationData.errorMessage}}
+            </p>
+                }
+        </div>
+        <button class="register-btn-submit" type="submit" [disabled]="registerForm.invalid">Register</button>
         <p class="message">
             Already have an account? <a routerLink="/login">Login</a>
         </p>

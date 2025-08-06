@@ -39,7 +39,7 @@
     color: #cdc984;
 }
 
-.form input {
+.form .register-input {
     outline: 0;
     border-radius: 10px;
     width: 100%;
@@ -83,6 +83,20 @@
     background-color: #cfe64c;
 }
 
+.register-btn-submit:disabled {
+    background-color: #b4db9b;
+    color: #666666;
+    cursor: not-allowed;
+    opacity: 0.6;
+    box-shadow: none;
+    border: 1px solid #999;
+}
+
+.register-btn-submit:disabled:hover {
+    background-color: #b4db9b;
+}
+
+
 .form .message {
     margin-top: 20px;
     color: #aebb5f;
@@ -98,4 +112,19 @@
 
 .form .message a:hover {
     color: #e0ff19;
+}
+
+form .error-message {
+    color: #ff6b6b;
+    font-size: 13px;
+    text-align: left;
+    margin-top: -15px;
+    margin-bottom: 10px;
+    padding-left: 5px;
+    min-height: 20px;
+}
+
+.form .invalid-input {
+    border: 2px solid #ff6b6b;
+    background-color: #ffeaea;
 }
