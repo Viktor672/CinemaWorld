@@ -22,11 +22,11 @@ export class Register implements OnInit {
   formType: string = 'Register Form';
   boundValidateForm!: () => void;
 
-  constructor(private formService: AuthFormService, private authService: AuthService, private router: Router) { }
+  constructor(private authFormService: AuthFormService, private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     this.boundValidateForm = this.validateForm.bind(this);
-    this.registerForm = this.formService.createForm(this.formType);
+    this.registerForm = this.authFormService.createForm(this.formType);
 
     this.registerForm.statusChanges.subscribe(() => {
       this.validateForm();
@@ -35,16 +35,16 @@ export class Register implements OnInit {
   }
 
   validateForm(): void {
-    this.usernameValidationData = { ...this.formService.usernameValidator(this.registerForm) };
+    this.usernameValidationData = { ...this.authFormService.usernameValidator(this.registerForm) };
 
-    this.emailValidationData = { ...this.formService.emailValidator(this.registerForm) };
-    this.passwordValidationData = { ...this.formService.passwordValidator(this.registerForm, this.formType) };
-    this.rePasswordValidationData = { ...this.formService.rePasswordValidator(this.registerForm) };
+    this.emailValidationData = { ...this.authFormService.emailValidator(this.registerForm) };
+    this.passwordValidationData = { ...this.authFormService.passwordValidator(this.registerForm, this.formType) };
+    this.rePasswordValidationData = { ...this.authFormService.rePasswordValidator(this.registerForm) };
   }
 
   onSubmit(): void {
     if (this.registerForm.invalid) {
-      this.formService.markFormAsTouched(this.registerForm);
+      this.authFormService.markFormAsTouched(this.registerForm);
       return;
     }
 

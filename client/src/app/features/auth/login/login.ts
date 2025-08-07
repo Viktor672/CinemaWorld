@@ -19,11 +19,11 @@ loginForm!: FormGroup;
   formType: string = 'Login Form';
   boundValidateForm!: () => void;
 
-  constructor(private formService: AuthFormService, private authService: AuthService, private router: Router) { }
+  constructor(private authFormService: AuthFormService, private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     this.boundValidateForm = this.validateForm.bind(this);
-    this.loginForm = this.formService.createForm(this.formType);
+    this.loginForm = this.authFormService.createForm(this.formType);
 
     this.loginForm.statusChanges.subscribe(() => {
       this.validateForm();
@@ -32,13 +32,13 @@ loginForm!: FormGroup;
   }
 
   validateForm(): void {
-    this.emailValidationData = { ...this.formService.emailValidator(this.loginForm) };
-    this.passwordValidationData = { ...this.formService.passwordValidator(this.loginForm, this.formType) };
+    this.emailValidationData = { ...this.authFormService.emailValidator(this.loginForm) };
+    this.passwordValidationData = { ...this.authFormService.passwordValidator(this.loginForm, this.formType) };
   }
 
     onSubmit(): void {
     if (this.loginForm.invalid) {
-      this.formService.markFormAsTouched(this.loginForm);
+      this.authFormService.markFormAsTouched(this.loginForm);
       return;
     }
 
