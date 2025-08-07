@@ -6,9 +6,9 @@ header {
   background: linear-gradient(to right, #121212, #1a1a2e);
   color: #ffffff;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-   z-index: 999;
-   margin-top: -60px;
-   padding: 15px;
+  z-index: 999;
+  margin-top: -60px;
+  padding: 15px;
 }
 
 .nav-container {
@@ -28,6 +28,14 @@ header {
   margin-right: 30px;
   flex-shrink: 0;
   letter-spacing: 1px;
+}
+
+.auth-nav {
+  display: flex;
+  align-items: center;
+  gap: 35px;
+  min-width: 180px;
+  justify-content: flex-end;
 }
 
 .center-nav,
@@ -70,4 +78,3 @@ header {
 .auth-nav a:hover::after {
   width: 100%;
 }
-

@@ -5,13 +5,19 @@
     <div class="center-nav">
       <a routerLink="/movies" routerLinkActive="active">Movies</a>
       <a routerLink="/about" routerLinkActive="active">About</a>
+      @if(currentUser()) {
       <a routerLink="/create" routerLinkActive="active">Create</a>
+      }
     </div>
 
     <div class="auth-nav">
+      @if(currentUser()) {
       <a routerLink="/logout" routerLinkActive="active" (click)="logout()">Logout</a>
+      }
+      @else{
       <a routerLink="/login" routerLinkActive="active">Login</a>
       <a routerLink="/register" routerLinkActive="active">Register</a>
+      }
     </div>
   </div>
 </header>
