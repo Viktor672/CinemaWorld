@@ -6,7 +6,7 @@ import { ValidationResult } from "../../models";
 @Injectable({
     providedIn: 'root'
 })
-export class FormService {
+export class AuthFormService {
     constructor(private formBuilder: FormBuilder, private httpClient: HttpClient) { }
 
     createForm(formType: string): FormGroup {

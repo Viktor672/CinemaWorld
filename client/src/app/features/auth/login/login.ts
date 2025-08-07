@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { BlurValidatorDirective } from '../../../directives/blur-validator/blur-validator';
 import { Router, RouterLink } from '@angular/router';
-import { FormService } from '../../../shared/services/authForm.service';
+import { AuthFormService } from '../../../shared/services/authForm.service';
 import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
@@ -19,7 +19,7 @@ loginForm!: FormGroup;
   formType: string = 'Login Form';
   boundValidateForm!: () => void;
 
-  constructor(private formService: FormService, private authService: AuthService, private router: Router) { }
+  constructor(private formService: AuthFormService, private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     this.boundValidateForm = this.validateForm.bind(this);

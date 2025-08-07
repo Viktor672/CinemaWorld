@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
-import { FormService } from '../../../shared/services/authForm.service';
+import { AuthFormService } from '../../../shared/services/authForm.service';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../../../core/services/auth.service';
 import { CommonModule } from '@angular/common';
@@ -22,7 +22,7 @@ export class Register implements OnInit {
   formType: string = 'Register Form';
   boundValidateForm!: () => void;
 
-  constructor(private formService: FormService, private authService: AuthService, private router: Router) { }
+  constructor(private formService: AuthFormService, private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     this.boundValidateForm = this.validateForm.bind(this);
