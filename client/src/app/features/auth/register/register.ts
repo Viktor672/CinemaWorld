@@ -38,7 +38,7 @@ export class Register implements OnInit {
     this.usernameValidationData = { ...this.formService.usernameValidator(this.registerForm) };
 
     this.emailValidationData = { ...this.formService.emailValidator(this.registerForm) };
-    this.passwordValidationData = { ...this.formService.passwordValidator(this.registerForm) };
+    this.passwordValidationData = { ...this.formService.passwordValidator(this.registerForm, this.formType) };
     this.rePasswordValidationData = { ...this.formService.rePasswordValidator(this.registerForm) };
   }
 
