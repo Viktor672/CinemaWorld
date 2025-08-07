@@ -34,7 +34,7 @@ header {
   display: flex;
   align-items: center;
   gap: 35px;
-  min-width: 180px;
+  min-width: 160px;
   justify-content: flex-end;
 }
 
