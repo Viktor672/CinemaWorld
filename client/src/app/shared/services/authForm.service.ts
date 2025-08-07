@@ -7,7 +7,7 @@ import { ValidationResult } from "../../models";
     providedIn: 'root'
 })
 export class AuthFormService {
-    constructor(private formBuilder: FormBuilder, private httpClient: HttpClient) { }
+    constructor(private formBuilder: FormBuilder) { }
 
     createForm(formType: string): FormGroup {
         if (formType === 'Register Form') {
