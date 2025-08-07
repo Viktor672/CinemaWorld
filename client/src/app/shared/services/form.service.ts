@@ -64,6 +64,9 @@ export class FormService {
         else if (usernameControl?.errors?.['minlength']) {
             errorMessage = 'Username should have at least 4 characters!';
         }
+        else if (usernameControl?.errors?.['maxlength']) {
+            errorMessage = 'Username must be at most 20 characters!';
+        }
         else {
             errorMessage = '';
         }
