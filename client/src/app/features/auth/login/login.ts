@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { BlurValidatorDirective } from '../../../directives/blur-validator/blur-validator';
 import { Router, RouterLink } from '@angular/router';
-import { FormService } from '../../../shared/services/form.service';
+import { FormService } from '../../../shared/services/authForm.service';
 import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
