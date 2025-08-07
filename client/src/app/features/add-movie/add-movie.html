@@ -1,1 +1,40 @@
-<p>add-movie works!</p>
+<div class="form-container">
+    <video appAutoPlayVideo class="video-slide" autoplay muted loop playsinline preload="auto">
+    <source src="videos/red.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+    </video>
+
+<div class="form-box">
+    <form>
+        <h1>Add a Movie</h1>
+            <div class="input-group">
+                <label for="movie-title">Title</label>
+                <input id="movie-title" placeholder="Movie title" type="text" name="title" class="input-field" />
+            </div>
+
+            <div class="input-group">
+                <label for="movie-genre">Genre</label>
+                <input id="movie-genre" placeholder="Fantasy, Action, Comedy" type="text" name="genre"
+                    class="input-field" />
+            </div>
+
+            <div class="input-group">
+                <label for="movie-description">Description</label>
+                <input id="movie-description" placeholder="Movie Description" type="text" name="description"
+                    class="input-field" />
+            </div>
+
+            <div class="input-group">
+                <label for="movie-cover">Upload Cover</label>
+                <input id="movie-cover" placeholder="http://" name="imageUrl" type="text" accept="image/*" class="input-field" />
+            </div>
+
+            <div class="input-group">
+                <label for="movie-release-date">Release Date</label>
+                <input id="movie-release-date" type="date" name="date" class="input-field" />
+            </div>
+
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
+    </div>
+</div>
