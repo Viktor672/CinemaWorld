@@ -21,7 +21,7 @@ export class FormService {
                     { validators: this.passwordsValidator })
             });
         }
-        else if (formType === 'Login form') {
+        else if (formType === 'Login Form') {
             return this.formBuilder.group({
                 email: ['', [Validators.required, Validators.pattern(/^([a-zA-Z0-9]{4,})@(abv\.bg|gmail\.com)$/gm)]],
                 password: ['', [Validators.required, Validators.minLength(8), Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/)]]
@@ -45,7 +45,10 @@ export class FormService {
         return form.get('passwords') as FormGroup;
     }
 
-    getControlPassword(form: FormGroup) {
+    getControlPassword(form: FormGroup, typeForm: string) {
+        if(typeForm === 'Login Form'){
+            return form.get('password');
+        }
         return this.getGroupPasswords(form).get('password');
     }
 
@@ -98,14 +101,21 @@ export class FormService {
         }
     }
 
-    passwordValidator(form: FormGroup): ValidationResult {
-        let passwordsGroup = this.getGroupPasswords(form);
-        let passwordControl = this.getControlPassword(form);
-        let rePasswordControl = this.getControlRepassword(form);
+    passwordValidator(form: FormGroup, formType: string): ValidationResult {
+        let hasMisMatched = null;
+        let passwordsGroup = null;
+        let rePasswordControl = null;
 
+        if (formType === 'Register Form') {
+            passwordsGroup = this.getGroupPasswords(form);
+            rePasswordControl = this.getControlRepassword(form);
+            
+            let isRepasswordTouchedOrDirty = Boolean(rePasswordControl?.touched || rePasswordControl?.dirty) || null;
+            hasMisMatched = Boolean(passwordsGroup?.errors?.['passwordsMismatch'] && isRepasswordTouchedOrDirty) || null;
+        }
+
+        let passwordControl = this.getControlPassword(form, formType);
         let isPasswordTouchedOrDirty = Boolean(passwordControl?.touched || passwordControl?.dirty);
-        let isRepasswordTouchedOrDirty = Boolean(rePasswordControl?.touched || rePasswordControl?.dirty);
-        let hasMisMatched = Boolean(passwordsGroup?.errors?.['passwordsMismatch'] && isRepasswordTouchedOrDirty);
 
         let isInvalid: boolean = Boolean((passwordControl?.invalid || hasMisMatched) && isPasswordTouchedOrDirty);
         let errorMessage: string = '';
