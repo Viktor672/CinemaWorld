@@ -13,7 +13,7 @@ export class MovieFormService {
             title: ['', [Validators.required]],
             genre: ['', [Validators.required, Validators.minLength(3)]],
             description: ['', [Validators.required, Validators.minLength(20), Validators.maxLength(250)]],
-            imageUrl: ['', [Validators.required, Validators.pattern(/^(https?:\/\/.+\.(png|jpg|jpeg|gif|webp))$/)]],
+            imageUrl: ['', [Validators.required, Validators.pattern(/^(https?:\/\/.+)$/)]],
             releaseDate: ['', [Validators.required]]
         });
     }
