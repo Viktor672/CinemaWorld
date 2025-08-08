@@ -1,37 +1,69 @@
 <div class="form-container">
     <video appAutoPlayVideo class="video-slide" autoplay muted loop playsinline preload="auto">
-    <source src="videos/red.mp4" type="video/mp4" />
-    Your browser does not support the video tag.
+        <source src="videos/red.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
     </video>
 
-<div class="form-box">
-    <form>
-        <h1>Add a Movie</h1>
+    <div class="form-box">
+        <form [formGroup]="addMovieForm" (ngSubmit)="onSubmit()">
+            <h1>Add a Movie</h1>
             <div class="input-group">
                 <label for="movie-title">Title</label>
-                <input id="movie-title" placeholder="Movie title" type="text" name="title" class="input-field" />
+                <input id="movie-title" [ngClass]="{'invalid-input': titleValidationData.isInvalid}"
+                    placeholder="Movie title" type="text" name="title" class="input-field" formControlName="title"
+                    [appBlurValidator]="boundValidateForm" />
+                @if(titleValidationData.isInvalid){
+                <p class="error-message">
+                    {{titleValidationData.errorMessage}}
+                </p>
+                }
             </div>
 
             <div class="input-group">
                 <label for="movie-genre">Genre</label>
-                <input id="movie-genre" placeholder="Fantasy, Action, Comedy" type="text" name="genre"
-                    class="input-field" />
+                <input id="movie-genre" [ngClass]="{'invalid-input': genreValidationData.isInvalid}"
+                    placeholder="Fantasy, Action, Comedy" type="text" name="genre" class="input-field" formControlName="genre"
+                    [appBlurValidator]="boundValidateForm" />
+                @if(genreValidationData.isInvalid){
+                <p class="error-message">
+                    {{genreValidationData.errorMessage}}
+                </p>
+                }
             </div>
 
             <div class="input-group">
                 <label for="movie-description">Description</label>
-                <input id="movie-description" placeholder="Movie Description" type="text" name="description"
-                    class="input-field" />
+                <input id="movie-description" [ngClass]="{'invalid-input': descriptionValidationData.isInvalid}"
+                    placeholder="Movie Description" type="text" name="description" class="input-field" formControlName="description"
+                    [appBlurValidator]="boundValidateForm" />
+                @if(descriptionValidationData.isInvalid){
+                <p class="error-message">
+                    {{descriptionValidationData.errorMessage}}
+                </p>
+                }
             </div>
 
             <div class="input-group">
                 <label for="movie-cover">Cover Url</label>
-                <input id="movie-cover" placeholder="http://" name="imageUrl" type="text" accept="image/*" class="input-field" />
+                <input id="movie-cover" [ngClass]="{'invalid-input': imageUrlValidationData.isInvalid}"
+                    placeholder="http://" name="imageUrl" type="text" accept="image/*" class="input-field" formControlName="imageUrl"
+                    [appBlurValidator]="boundValidateForm" />
+                @if(imageUrlValidationData.isInvalid){
+                <p class="error-message">
+                    {{imageUrlValidationData.errorMessage}}
+                </p>
+                }
             </div>
 
             <div class="input-group">
                 <label for="movie-release-date">Release Date</label>
-                <input id="movie-release-date" type="date" name="date" class="input-field" />
+                <input id="movie-release-date" [ngClass]="{'invalid-input': releaseDateValidationData.isInvalid}"
+                    type="date" name="date" class="input-field" formControlName="releaseDate" [appBlurValidator]="boundValidateForm" />
+                @if(releaseDateValidationData.isInvalid){
+                <p class="error-message">
+                    {{releaseDateValidationData.errorMessage}}
+                </p>
+                }
             </div>
 
             <button type="submit" class="submit-btn">Submit</button>
