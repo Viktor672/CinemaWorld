@@ -28,8 +28,7 @@ export class MovieService {
             releaseDate
         }
 
-        let response = this.httpClient.post<ApiMovie>(`${this.baseUrl}/movies`, movie).pipe(map((apiMovie: ApiMovie) => this.mapApiMovieToMovie(apiMovie)));
-        return response;
+        return this.httpClient.post<ApiMovie>(`${this.baseUrl}/movies`, movie).pipe(map((apiMovie: ApiMovie) => this.mapApiMovieToMovie(apiMovie)));
     }
 
     private mapApiMovieToMovie(apiMovie: ApiMovie): Movie {
