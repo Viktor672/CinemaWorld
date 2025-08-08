@@ -2,8 +2,8 @@ export interface Movie {
     _ownerId: string,
     title: string,
     description: string,
-    img: string,
+    imageUrl: string,
     genre: string,
-    _createdOn: number,
+    releaseDate: Date
     _id: string
 }
