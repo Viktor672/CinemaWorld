@@ -35,8 +35,6 @@ export class AddMovie {
 
   validateForm(): void {
     this.titleValidationData = { ...this.movieFormService.titleValidator(this.addMovieForm) };
-    console.log(this.genreValidationData);
-    
     this.genreValidationData = { ...this.movieFormService.genreValidator(this.addMovieForm) };
     this.descriptionValidationData = { ...this.movieFormService.descriptionValidator(this.addMovieForm) };
     this.imageUrlValidationData = { ...this.movieFormService.imageUrlValidator(this.addMovieForm) };
@@ -50,6 +48,7 @@ export class AddMovie {
     }
 
     let { title, genre, description, imageUrl, releaseDate } = this.addMovieForm.value;
+console.log(imageUrl);
 
     this.movieService.addMovie(title, genre, description, imageUrl, releaseDate).subscribe({
       next: () => {

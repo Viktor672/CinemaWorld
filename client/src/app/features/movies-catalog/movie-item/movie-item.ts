@@ -9,17 +9,11 @@ import { CommonModule } from '@angular/common';
   templateUrl: './movie-item.html',
   styleUrl: './movie-item.css'
 })
-export class MovieItem implements AfterViewInit {
+export class MovieItem {
   @Input() movie!: Movie;
   
   constructor() { 
   console.log(this.movie);
-}
-
-
-ngAfterViewInit(): void {
-  console.log(this.movie);
-  
 }
 
   get backgroundImgStyle(): { } {
