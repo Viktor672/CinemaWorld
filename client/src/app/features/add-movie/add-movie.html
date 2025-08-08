@@ -46,7 +46,7 @@
             <div class="input-group">
                 <label for="movie-cover">Cover Url</label>
                 <input id="movie-cover" [ngClass]="{'invalid-input': imageUrlValidationData.isInvalid}"
-                    placeholder="http://" name="imageUrl" type="text" accept="image/*" class="input-field" formControlName="imageUrl"
+                    placeholder="http://" name="imageUrl" type="text" class="input-field" formControlName="imageUrl"
                     [appBlurValidator]="boundValidateForm" />
                 @if(imageUrlValidationData.isInvalid){
                 <p class="error-message">
@@ -58,7 +58,7 @@
             <div class="input-group">
                 <label for="movie-release-date">Release Date</label>
                 <input id="movie-release-date" [ngClass]="{'invalid-input': releaseDateValidationData.isInvalid}"
-                    type="date" name="date" class="input-field" formControlName="releaseDate" [appBlurValidator]="boundValidateForm" />
+                    type="date" name="releaseDate" class="input-field" formControlName="releaseDate" [appBlurValidator]="boundValidateForm" />
                 @if(releaseDateValidationData.isInvalid){
                 <p class="error-message">
                     {{releaseDateValidationData.errorMessage}}

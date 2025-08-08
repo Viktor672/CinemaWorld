@@ -101,7 +101,7 @@ h1 {
 
 .submit-btn {
     width: 100%;
-    background: #730e0e;
+    background: #c8232e;
     color: rgb(255, 255, 255);
     padding: 12px;
     border: none;
@@ -116,12 +116,11 @@ h1 {
 }
 
 .submit-btn:disabled {
-    background-color: #e92936;
+    background-color: #730e0e;
     color: #ffffff;
     cursor: not-allowed;
     opacity: 0.6;
     box-shadow: none;
-    border: 1px solid #999;
 }
 
 form .error-message {
