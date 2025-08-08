@@ -24,7 +24,7 @@ ngAfterViewInit(): void {
 
   get backgroundImgStyle(): { } {
     return {
-      'background-image': `url(${this.movie?.img})`,
+      'background-image': `url(${this.movie?.imageUrl})`,
       'background-size': 'cover',
       'background-position': 'center'
     }
