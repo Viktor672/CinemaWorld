@@ -47,7 +47,7 @@ h1 {
 }
 
 .input-group ::placeholder {
-    color: #000000
+    color: #5b5454
 }
 
 .input-group input[type="text"],
@@ -113,6 +113,15 @@ h1 {
 
 .submit-btn:hover {
     background: #ff1e26;
+}
+
+.submit-btn:disabled {
+    background-color: #e92936;
+    color: #ffffff;
+    cursor: not-allowed;
+    opacity: 0.6;
+    box-shadow: none;
+    border: 1px solid #999;
 }
 
 form .error-message {
