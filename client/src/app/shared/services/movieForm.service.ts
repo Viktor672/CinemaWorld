@@ -13,7 +13,7 @@ export class MovieFormService {
             title: ['', [Validators.required]],
             genre: ['', [Validators.required, Validators.minLength(3)]],
             description: ['', [Validators.required, Validators.minLength(20), Validators.maxLength(250)]],
-            imageUrl: ['', [Validators.required, Validators.pattern(/^(https?:\/\/.+\.(png|jpg|jpeg|gif|webp))$/g)]],
+            imageUrl: ['', [Validators.required, Validators.pattern(/^(https?:\/\/.+\.(png|jpg|jpeg|gif|webp))$/)]],
             releaseDate: ['', [Validators.required]]
         });
     }
@@ -83,7 +83,7 @@ export class MovieFormService {
         let errorMessage: string = '';
 
         if (descriptionControl?.errors?.['required']) {
-            errorMessage = 'Genre is required!';
+            errorMessage = 'Description is required!';
         }
         else if (descriptionControl?.errors?.['minlength']) {
             errorMessage = 'Description should be at least 20 characters!';
