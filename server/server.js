@@ -1496,6 +1496,7 @@
     			img: "https://miro.medium.com/max/735/1*akkAa2CcbKqHsvqVusF3-w.jpeg",
                 genre: 'action',
     			_createdOn: 1614935055353,
+                releaseData: '9.07.2021',
     			_id: "1240549d-f0e0-497e-ab99-eb8f703713d7"
     		},
     		"143e5265-333e-4150-80e4-16b61de31aa0": {
@@ -1505,6 +1506,7 @@
     			img: "https://pbs.twimg.com/media/ETINgKwWAAAyA4r.jpg",
                 genre: 'adventure',
     			_createdOn: 1614935181470,
+                releaseData: '16.12.2020',
     			_id: "143e5265-333e-4150-80e4-16b61de31aa0"
     		},
     		"a9bae6d8-793e-46c4-a9db-deb9e3484909": {
@@ -1514,6 +1516,7 @@
     			img: "https://i.pinimg.com/originals/f2/a4/58/f2a458048757bc6914d559c9e4dc962a.jpg",
                 genre: 'action',
     			_createdOn: 1614935268135,
+                releaseData: '27.05.2022',
     			_id: "a9bae6d8-793e-46c4-a9db-deb9e3484909"
     		}
     	},
