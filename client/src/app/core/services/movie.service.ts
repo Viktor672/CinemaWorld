@@ -24,11 +24,12 @@ export class MovieService {
             title,
             genre,
             description,
-            imageUrl,
+            img: imageUrl,
             releaseDate
         }
-let accessToken = localStorage.getItem('currentUser');
-        return this.httpClient.post<ApiMovie>(`${this.baseUrl}/movies`, movie).pipe(map((apiMovie: ApiMovie) => this.mapApiMovieToMovie(apiMovie)));
+
+        let response = this.httpClient.post<ApiMovie>(`${this.baseUrl}/movies`, movie).pipe(map((apiMovie: ApiMovie) => this.mapApiMovieToMovie(apiMovie)));
+        return response;
     }
 
     private mapApiMovieToMovie(apiMovie: ApiMovie): Movie {
