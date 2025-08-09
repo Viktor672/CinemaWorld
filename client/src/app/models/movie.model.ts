@@ -4,6 +4,6 @@ export interface Movie {
     description: string,
     imageUrl: string,
     genre: string,
-    releaseDate: Date
+    releaseDate: Date,
     _id: string
 }

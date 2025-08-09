@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Movie } from '../../../models';
 import { CommonModule } from '@angular/common';
@@ -11,12 +11,9 @@ import { CommonModule } from '@angular/common';
 })
 export class MovieItem {
   @Input() movie!: Movie;
-  
-  constructor() { 
-  console.log(this.movie);
-}
+  constructor() { }
 
-  get backgroundImgStyle(): { } {
+  get backgroundImgStyle(): {} {
     return {
       'background-image': `url(${this.movie?.imageUrl})`,
       'background-size': 'cover',

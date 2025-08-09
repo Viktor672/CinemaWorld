@@ -17,6 +17,10 @@ export const routes: Routes = [
         loadComponent: () => import('./features/movies/movie-board/movie-board').then(component => component.MovieBoard)
     },
     {
+        path: 'movies/:id',
+        loadComponent: () => import('./features/movies/movie-details/movie-details').then(component => component.MovieDetails)
+    },
+    {
         path: 'add-movie',
         loadComponent: () => import('./features/add-movie/add-movie').then(component => component.AddMovie)
     },
