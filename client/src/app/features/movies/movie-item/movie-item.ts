@@ -11,6 +11,7 @@ import { CommonModule } from '@angular/common';
 })
 export class MovieItem {
   @Input() movie!: Movie;
+
   constructor() { }
 
   get backgroundImgStyle(): {} {
