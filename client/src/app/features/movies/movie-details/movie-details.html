@@ -1,1 +1,16 @@
-<p>movie-details works!</p>
+<div class="details" [ngStyle]="backgroundImageStyle">
+    <div class="details__container">
+        <h1 class="details__title">{{movie?.title}}</h1>
+        <p class="details__date">{{movie?.releaseDate}} | {{movie?.genre}}</p>
+        <p class="details__description">{{movie?.description}}</p>
+
+        <div class="details__buttons">
+            <a [routerLink]="['edit']" class="details__edit-btn">
+                Edit
+            </a>
+            <button class="details__delete-btn">
+                Delete
+            </button>
+        </div>
+    </div>
+</div>
