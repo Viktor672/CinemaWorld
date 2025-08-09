@@ -21,12 +21,13 @@ export class MovieService {
 
     getMovie(id: string | null): Observable<Movie> {
         console.log(id);
-        
+
         return this.httpClient.get<ApiMovie>(`${this.baseUrl}/movies/${id}`).pipe(map((apiMovie: ApiMovie) => this.mapApiMovieToMovie(apiMovie)));
     }
 
-    addMovie(title: string, genre: string, description: string, imageUrl: string, releaseDate: Date): Observable<Movie> {
+    addMovie(authorEmail: string | undefined, title: string, genre: string, description: string, imageUrl: string, releaseDate: Date): Observable<Movie> {
         let movie = {
+            authorEmail,
             title,
             genre,
             description,
@@ -42,6 +43,7 @@ export class MovieService {
     private mapApiMovieToMovie(apiMovie: ApiMovie): Movie {
         return {
             _ownerId: apiMovie._ownerId,
+            authorEmail: apiMovie.authorEmail,
             title: apiMovie.title,
             description: apiMovie.description,
             imageUrl: apiMovie.img,

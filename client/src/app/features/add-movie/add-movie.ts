@@ -6,6 +6,7 @@ import { MovieFormService } from '../../shared/services';
 import { Router } from '@angular/router';
 import { BlurValidatorDirective } from '../../directives/blur-validator/blur-validator';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../../core/services/auth.service';
 
 @Component({
   selector: 'app-add-movie',
@@ -22,10 +23,11 @@ export class AddMovie {
   releaseDateValidationData = { isInvalid: false, errorMessage: '' };
   boundValidateForm!: () => void;
 
-  constructor(private movieFormService: MovieFormService, private movieService: MovieService, private router: Router) { }
+  constructor(private movieFormService: MovieFormService, private movieService: MovieService, private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     this.boundValidateForm = this.validateForm.bind(this);
+    // this.addMovieForm.statusChanges.subscribe(this.boundValidateForm);
     this.addMovieForm = this.movieFormService.createForm();
 
     this.addMovieForm.statusChanges.subscribe(() => {
@@ -46,11 +48,12 @@ export class AddMovie {
       this.movieFormService.markFormAsTouched(this.addMovieForm);
       return;
     }
-
+    
+    let authorEmail = this.authService.currentUser()?.email;
+    
     let { title, genre, description, imageUrl, releaseDate } = this.addMovieForm.value;
-console.log(imageUrl);
 
-    this.movieService.addMovie(title, genre, description, imageUrl, releaseDate).subscribe({
+    this.movieService.addMovie(authorEmail, title, genre, description, imageUrl, releaseDate).subscribe({
       next: () => {
         this.router.navigate(['/movies']);
       },
