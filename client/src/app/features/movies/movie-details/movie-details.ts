@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { Movie } from '../../../models';
 import { Subscription } from 'rxjs';
@@ -8,7 +8,7 @@ import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
   selector: 'app-movie-details',
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, DatePipe],
   templateUrl: './movie-details.html',
   styleUrl: './movie-details.css'
 })
