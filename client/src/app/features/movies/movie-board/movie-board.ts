@@ -16,7 +16,7 @@ export class MovieBoard implements OnInit, OnDestroy {
   public movies: Movie[] = [];
   private subscriptions: Subscription[] = [];
   constructor(private movieService: MovieService) { }
-
+  
   ngOnInit(): void {
     this.subscriptions.push(this.movieService.getMovies().subscribe((response: Movie[]) => {
       this.movies = response;
