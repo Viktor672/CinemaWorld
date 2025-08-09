@@ -21,6 +21,10 @@ export const routes: Routes = [
         loadComponent: () => import('./features/movies/movie-details/movie-details').then(component => component.MovieDetails)
     },
     {
+        path: 'edit-movie',
+        loadComponent: () => import('./features/edit-movie/edit-movie').then(component => component.EditMovie)
+    },
+    {
         path: 'add-movie',
         loadComponent: () => import('./features/add-movie/add-movie').then(component => component.AddMovie)
     },
