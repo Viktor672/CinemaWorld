@@ -1497,7 +1497,7 @@
             img: "https://w0.peakpx.com/wallpaper/557/513/HD-wallpaper-the-godfather-marlon-brando-vito-corleone.jpg",
             genre: "criminale",
             _createdOn: 1664932258631,
-            releaseDate: '24.03.1972',
+            releaseDate: '1972-03-24',
             _id: 'a2vda213-dp12-21c9-db83w5283730'
             }
     	},
