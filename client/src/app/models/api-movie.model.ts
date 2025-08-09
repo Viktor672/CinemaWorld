@@ -1,5 +1,6 @@
 export interface ApiMovie {
     _ownerId: string,
+    authorEmail: string,
     title: string,
     description: string,
     img: string,
