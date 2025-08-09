@@ -9,9 +9,9 @@
     padding: 3rem 2rem;
     overflow: hidden;
     background-color: white;
-    background-size: contain;
+    background-size: cover;
     background-position: center;
-    background-repeat: inherit;
+    background-repeat: no-repeat;
 }
 
 .details__container {
@@ -58,6 +58,26 @@
     max-width: 700px;
     margin-left: auto;
     margin-right: auto;
+}
+
+.details__author-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.8rem;
+    margin-top: 1.5rem;
+    padding: 5px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.details__author-email {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #d3dd17;
+    letter-spacing: 0.5px;
+    word-break: break-word;
 }
 
 .details__buttons {
