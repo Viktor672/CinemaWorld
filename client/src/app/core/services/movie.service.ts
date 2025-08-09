@@ -38,6 +38,10 @@ export class MovieService {
         return this.httpClient.post<ApiMovie>(`${this.baseUrl}/movies`, movie).pipe(map((apiMovie: ApiMovie) => this.mapApiMovieToMovie(apiMovie)));
     }
 
+    deleteMovie(id: string | null): Observable<any> {
+        return this.httpClient.delete(`${this.baseUrl}/movies/${id}`);
+    }
+
 
 
     private mapApiMovieToMovie(apiMovie: ApiMovie): Movie {
