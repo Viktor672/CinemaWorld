@@ -1,6 +1,6 @@
 <article class="blog__post" [ngStyle]="backgroundImgStyle">
     <div class="blog__meta">
-        <time class="blog__date">31.07.2025</time>
+        <time class="blog__date">{{movie.releaseDate | date:'longDate'}}</time>
         <a [routerLink]="['/movies', movie._id]" class="blog__genre">{{movie.genre}}</a>
     </div>
 
