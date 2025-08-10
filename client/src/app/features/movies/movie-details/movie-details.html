@@ -7,6 +7,22 @@
         <div class="details__author-container">
             <p class="details__author-email">{{movie?.authorEmail}}</p>
         </div>
+
+        <div class="blog__like-section">
+            @if(!isOwner && currentUser() && !(hasLiked())) {
+            <button class="blog__like-btn" (click)="likeHandler()">
+                <span class="blog__like-text">Like</span>
+            </button>
+            }
+
+          <div class="blog__like-count-wrapper">
+            <span class="blog__like-icon">
+              <img src="/images/heart.svg" alt="Heart" />
+            </span>
+            <span class="blog__like-count">{{likesCounter()}} Likes</span>
+          </div>
+        </div>
+        
         @if(isOwner === true) {
         <div class="details__buttons">
             <a [routerLink]="['edit']" class="details__edit-btn">
