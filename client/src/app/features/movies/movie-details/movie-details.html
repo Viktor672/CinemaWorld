@@ -9,7 +9,7 @@
         </div>
 
         <div class="blog__like-section">
-            @if(!isOwner && currentUser() && !(hasLiked())) {
+            @if(!isOwner && currentUser() && !hasLiked()) {
             <button class="blog__like-btn" (click)="likeHandler()">
                 <span class="blog__like-text">Like</span>
             </button>
