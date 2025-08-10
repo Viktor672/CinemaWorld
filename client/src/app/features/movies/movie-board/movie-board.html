@@ -13,14 +13,19 @@
                         world of cinema.</p>
                 </div>
 
+                <div class="search-bar-wrapper">
+                    <input type="text" class="search-bar" placeholder="Search games by title..."
+                        (input)="searchHandler($event)" />
+                </div>
+
                 <div class="blog__grid">
-                @if(movies.length <= 0) { <h2 class="no-games">No Games yet!</h2>
-                    }
-                    @else {
-                        @for(movie of movies; track movie._id) {
+                    @if(filteredMovies.length <= 0) { <h2 class="no-games">No Games yet!</h2>
+                        }
+                        @else {
+                        @for(movie of filteredMovies; track movie._id) {
                         <app-movie-item [movie]="movie"></app-movie-item>
                         }
-                    }
+                        }
                 </div>
             </div>
         </div>
