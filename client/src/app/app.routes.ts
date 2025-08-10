@@ -1,6 +1,8 @@
 import { Routes } from '@angular/router';
 import { About } from './features/about/about';
 import { PageNotFound } from './shared/components';
+import { authGuard } from './core/guards/auth.guard';
+import { movieOwnerGuard } from './core/guards/movie-owner.guard';
 
 export const routes: Routes = [
     {
@@ -22,11 +24,13 @@ export const routes: Routes = [
     },
     {
         path: 'movies/:id/edit',
-        loadComponent: () => import('./features/edit-movie/edit-movie').then(component => component.EditMovie)
+        loadComponent: () => import('./features/edit-movie/edit-movie').then(component => component.EditMovie),
+        canActivate: [movieOwnerGuard]
     },
     {
         path: 'add-movie',
-        loadComponent: () => import('./features/add-movie/add-movie').then(component => component.AddMovie)
+        loadComponent: () => import('./features/add-movie/add-movie').then(component => component.AddMovie),
+        canActivate: [authGuard]
     },
     {
         path: 'register',
