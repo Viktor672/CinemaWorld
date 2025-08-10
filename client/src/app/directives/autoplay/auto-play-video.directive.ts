@@ -15,7 +15,6 @@ export class AutoPlayVideo implements AfterViewInit {
 
   private enableAutoplay(): void {
     this.video = this.el.nativeElement;
-    console.log(this.video);
 
     this.video.muted = true;
 

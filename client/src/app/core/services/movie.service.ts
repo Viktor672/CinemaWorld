@@ -20,8 +20,6 @@ export class MovieService {
     }
 
     getMovie(id: string | null): Observable<Movie> {
-        console.log(id);
-
         return this.httpClient.get<ApiMovie>(`${this.baseUrl}/movies/${id}`).pipe(map((apiMovie: ApiMovie) => this.mapApiMovieToMovie(apiMovie)));
     }
 

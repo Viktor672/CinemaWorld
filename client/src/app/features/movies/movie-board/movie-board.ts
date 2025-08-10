@@ -20,7 +20,6 @@ export class MovieBoard implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.subscriptions.push(this.movieService.getMovies().subscribe((response: Movie[]) => {
       this.movies = response;
-      console.log(this.movies);
     }));
   }
 
