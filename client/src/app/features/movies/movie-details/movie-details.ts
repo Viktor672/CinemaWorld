@@ -1,10 +1,11 @@
 import { CommonModule, DatePipe } from '@angular/common';
-import { Component, inject, OnDestroy, OnInit } from '@angular/core';
-import { Movie } from '../../../models';
+import { Component, inject, OnDestroy, OnInit, signal, WritableSignal } from '@angular/core';
+import { Movie, User } from '../../../models';
 import { Subscription } from 'rxjs';
 import { MovieService } from '../../../core/services/movie.service';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../core/services/auth.service';
+import { UserService } from '../../../core/services/user.service';
 
 @Component({
   selector: 'app-movie-details',
@@ -15,18 +16,21 @@ import { AuthService } from '../../../core/services/auth.service';
 export class MovieDetails implements OnInit, OnDestroy {
   private activeRoute = inject(ActivatedRoute);
   private router = inject(Router);
-  public movieService = inject(MovieService);
-  public authService = inject(AuthService);
+  private movieService = inject(MovieService);
+  private userService = inject(UserService);
+  private authService = inject(AuthService);
 
   public movie: Movie | null = null;
-  public id: string | null = this.activeRoute.snapshot.paramMap.get('id');
+  public movieId: string | null = this.activeRoute.snapshot.paramMap.get('id');
+  readonly currentUser = this.authService.currentUser;
+  public ownerId: string | null = '';
+  public id: string | undefined = '';
   private subscriptions: Subscription[] = [];
-  private currentUser = this.authService.currentUser();
   public isOwner: boolean = false;
+  public hasLiked: WritableSignal<boolean> = signal(Boolean(localStorage.getItem(`liked_${this.movieId}_${this.currentUser()?._id}`)));
+  public likesCounter: WritableSignal<number> = signal(0);
 
-  constructor() {
-
-  }
+  constructor() { }
 
   get backgroundImageStyle(): {} {
     return {
@@ -35,14 +39,31 @@ export class MovieDetails implements OnInit, OnDestroy {
   }
 
   public deleteHandler(): void {
-    this.subscriptions.push(this.movieService.deleteMovie(this.id).subscribe());
+    this.subscriptions.push(this.movieService.deleteMovie(this.movieId).subscribe());
     this.router.navigateByUrl('/movies');
   }
 
+  public likeHandler(): void {
+    this.subscriptions.push(this.userService.like(this.ownerId, this.movieId).subscribe());
+
+    localStorage.setItem(`liked_${this.movieId}_${this.currentUser()?._id}`, 'true');
+    this.likesCounter.set(this.likesCounter() + 1);
+    this.hasLiked.set(true)
+  }
+
   ngOnInit(): void {
-    this.subscriptions.push(this.movieService.getMovie(this.id).subscribe((response: Movie) => {
+    this.id = this.currentUser()?._id;
+    console.log(this.id);
+
+    this.subscriptions.push(this.movieService.getMovie(this.movieId).subscribe((response: Movie) => {
       this.movie = response;
-      this.isOwner = this.currentUser?._id === this.movie?._ownerId;
+      this.ownerId = this.movie?._ownerId;
+
+      this.isOwner = this.currentUser()?._id === this.ownerId;
+    }));
+
+    this.subscriptions.push(this.userService.getLikes(this.movieId).subscribe((response: number) => {
+      this.likesCounter.set(response);
     }));
   }
 
