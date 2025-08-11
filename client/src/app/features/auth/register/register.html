@@ -6,40 +6,40 @@
         <br />
 
         <div class="input-group">
-        <input class="register-input" [ngClass]="{'invalid-input': usernameValidationData.isInvalid}" type="text"
-            id="username" name="username" placeholder="Username" [appBlurValidator]="boundValidateForm"
-            formControlName="username" />
-        @if(usernameValidationData.isInvalid) {
-        <p class="error-message">
-            {{usernameValidationData.errorMessage}}
-        </p>
-        }
-</div>
-
-        <div class="input-group">
-        <input class="register-input" [ngClass]="{'invalid-input': emailValidationData.isInvalid}" type="email"
-            id="email" name="email" placeholder="Email" [appBlurValidator]="boundValidateForm"
-            formControlName="email" />
-        @if(emailValidationData.isInvalid){
-        <p class="error-message">
-            {{emailValidationData.errorMessage}}
-        </p>
-        }
+            <input class="register-input" [ngClass]="{'invalid-input': usernameValidationData.isInvalid}" type="text"
+                id="username" name="username" placeholder="Username" [appBlurValidator]="boundValidateForm"
+                formControlName="username" />
+            @if(usernameValidationData.isInvalid) {
+            <p class="error-message">
+                {{usernameValidationData.errorMessage}}
+            </p>
+            }
         </div>
 
         <div class="input-group">
-        <input class="register-input" [ngClass]="{'invalid-input': countryValidationData.isInvalid}" type="country"
-            id="country" name="country" placeholder="Country" [appBlurValidator]="boundValidateForm"
-            formControlName="country" />
-        @if(countryValidationData.isInvalid){
-        <p class="error-message">
-            {{countryValidationData.errorMessage}}
-        </p>
-        }
+            <input class="register-input" [ngClass]="{'invalid-input': emailValidationData.isInvalid}" type="email"
+                id="email" name="email" placeholder="Email" [appBlurValidator]="boundValidateForm"
+                formControlName="email" />
+            @if(emailValidationData.isInvalid){
+            <p class="error-message">
+                {{emailValidationData.errorMessage}}
+            </p>
+            }
+        </div>
+
+        <div class="input-group">
+            <input class="register-input" [ngClass]="{'invalid-input': countryValidationData.isInvalid}" type="country"
+                id="country" name="country" placeholder="Country" [appBlurValidator]="boundValidateForm"
+                formControlName="country" />
+            @if(countryValidationData.isInvalid){
+            <p class="error-message">
+                {{countryValidationData.errorMessage}}
+            </p>
+            }
         </div>
 
         <div formGroupName="passwords">
-        <div class="input-group">
+            <div class="input-group">
                 <input class="register-input" [ngClass]="{'invalid-input': passwordValidationData.isInvalid}"
                     type="password" id="password" name="password" placeholder="Password"
                     [appBlurValidator]="boundValidateForm" formControlName="password" />
@@ -48,17 +48,17 @@
                     {{passwordValidationData.errorMessage}}
                 </p>
                 }
-                </div>
+            </div>
 
-        <div class="input-group">
-            <input class="register-input" [ngClass]="{'invalid-input': rePasswordValidationData.isInvalid}"
-                type="password" id="rePassword" name="rePassword" placeholder="Repeat Password"
-                [appBlurValidator]="boundValidateForm" formControlName="rePassword" />
-            @if(rePasswordValidationData.isInvalid){
-            <p class="error-message">
-                {{rePasswordValidationData.errorMessage}}
-            </p>
-            }
+            <div class="input-group">
+                <input class="register-input" [ngClass]="{'invalid-input': rePasswordValidationData.isInvalid}"
+                    type="password" id="rePassword" name="rePassword" placeholder="Repeat Password"
+                    [appBlurValidator]="boundValidateForm" formControlName="rePassword" />
+                @if(rePasswordValidationData.isInvalid){
+                <p class="error-message">
+                    {{rePasswordValidationData.errorMessage}}
+                </p>
+                }
             </div>
         </div>
 
