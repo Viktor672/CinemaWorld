@@ -5,7 +5,7 @@
         </b>
         <br />
 
-        <!-- <div> -->
+        <div>
             <input class="login-input" [ngClass]="{'invalid-input': emailValidationData.isInvalid}" type="email"
                 id="email" name="email" placeholder="Email" [appBlurValidator]="boundValidateForm"
                 formControlName="email" />
@@ -16,9 +16,9 @@
                 </p>
                 }
             </div>
-        <!-- </div> -->
+        </div>
 
-        <!-- <div> -->
+        <div>
             <input class="login-input" [ngClass]="{'invalid-input': passwordValidationData.isInvalid}" type="password"
                 id="password" name="password" placeholder="Password" [appBlurValidator]="boundValidateForm"
                 formControlName="password" />
@@ -27,7 +27,7 @@
                 {{passwordValidationData.errorMessage}}
             </p>
             }
-        <!-- </div> -->
+        </div>
 
         <button class="login-btn-submit" type="submit" [disabled]="loginForm.invalid">Login</button>
         <p class="message">
