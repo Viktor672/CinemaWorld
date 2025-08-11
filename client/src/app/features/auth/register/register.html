@@ -24,25 +24,38 @@
             </p>
             }
         </div>
+
+        <input class="register-input" [ngClass]="{'invalid-input': countryValidationData.isInvalid}" type="country"
+            id="country" name="country" placeholder="Country" [appBlurValidator]="boundValidateForm"
+            formControlName="country" />
+        <div>
+            @if(countryValidationData.isInvalid){
+            <p class="error-message">
+                {{countryValidationData.errorMessage}}
+            </p>
+            }
+        </div>
+
         <div formGroupName="passwords">
             <input class="register-input" [ngClass]="{'invalid-input': passwordValidationData.isInvalid}"
                 type="password" id="password" name="password" placeholder="Password"
                 [appBlurValidator]="boundValidateForm" formControlName="password" />
-                @if(passwordValidationData.isInvalid){
+            @if(passwordValidationData.isInvalid){
             <p class="error-message">
                 {{passwordValidationData.errorMessage}}
             </p>
-                }
+            }
 
             <input class="register-input" [ngClass]="{'invalid-input': rePasswordValidationData.isInvalid}"
                 type="password" id="rePassword" name="rePassword" placeholder="Repeat Password"
                 [appBlurValidator]="boundValidateForm" formControlName="rePassword" />
-                @if(rePasswordValidationData.isInvalid){
-                    <p class="error-message">
+            @if(rePasswordValidationData.isInvalid){
+            <p class="error-message">
                 {{rePasswordValidationData.errorMessage}}
             </p>
-                }
+            }
         </div>
+
         <button class="register-btn-submit" type="submit" [disabled]="registerForm.invalid">Register</button>
         <p class="message">
             Already have an account? <a routerLink="/login">Login</a>
