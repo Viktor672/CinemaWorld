@@ -53,6 +53,10 @@ export const routes: Routes = [
         component: About
     },
     {
+        path: 'page-not-found',
+        loadComponent: () => import('./shared/components/page-not-found/page-not-found').then(component => component.PageNotFound)
+    },
+    {
         path: '**',
         component: PageNotFound
     }
