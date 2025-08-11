@@ -1,6 +1,6 @@
 import { CommonModule, DatePipe } from '@angular/common';
 import { Component, inject, OnDestroy, OnInit, signal, WritableSignal } from '@angular/core';
-import { Movie, User } from '../../../models';
+import { Movie } from '../../../models';
 import { Subscription } from 'rxjs';
 import { MovieService } from '../../../core/services/movie.service';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
@@ -39,8 +39,16 @@ export class MovieDetails implements OnInit, OnDestroy {
   }
 
   public deleteHandler(): void {
-    this.subscriptions.push(this.movieService.deleteMovie(this.movieId).subscribe());
-    this.router.navigateByUrl('/movies');
+    let hasConfirmed = globalThis.confirm(`Are you sure you want to delete ${this.movie?.title}?`);
+
+    if (!hasConfirmed) {
+      this.router.createUrlTree(['/movies', this.movieId]);
+    }
+    else {
+      this.subscriptions.push(this.movieService.deleteMovie(this.movieId).subscribe(() => {
+        this.router.navigateByUrl('/movies');
+      }));
+    }
   }
 
   public likeHandler(): void {
@@ -53,7 +61,6 @@ export class MovieDetails implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.id = this.currentUser()?._id;
-    console.log(this.id);
 
     this.subscriptions.push(this.movieService.getMovie(this.movieId).subscribe((response: Movie) => {
       this.movie = response;
