@@ -17,6 +17,7 @@ export class Register implements OnInit {
   registerForm!: FormGroup;
   usernameValidationData = { isInvalid: false, errorMessage: '' };
   emailValidationData = { isInvalid: false, errorMessage: '' };
+  countryValidationData = { isInvalid: false, errorMessage: '' };
   passwordValidationData = { isInvalid: false, errorMessage: '' };
   rePasswordValidationData = { isInvalid: false, errorMessage: '' };
   formType: string = 'Register Form';
@@ -36,8 +37,8 @@ export class Register implements OnInit {
 
   validateForm(): void {
     this.usernameValidationData = { ...this.authFormService.usernameValidator(this.registerForm) };
-
     this.emailValidationData = { ...this.authFormService.emailValidator(this.registerForm) };
+    this.countryValidationData = { ...this.authFormService.countryValidator(this.registerForm) };
     this.passwordValidationData = { ...this.authFormService.passwordValidator(this.registerForm, this.formType) };
     this.rePasswordValidationData = { ...this.authFormService.rePasswordValidator(this.registerForm) };
   }
@@ -48,10 +49,10 @@ export class Register implements OnInit {
       return;
     }
 
-    let { username, email } = this.registerForm.value;
+    let { username, email, country } = this.registerForm.value;
     let { password, rePassword } = this.registerForm.value.passwords;
 
-    this.authService.register(username, email, password, rePassword).subscribe({
+    this.authService.register(username, email, country, password, rePassword).subscribe({
       next: () => {
         this.router.navigate(['/home']);
       },
