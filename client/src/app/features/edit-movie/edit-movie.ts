@@ -7,10 +7,11 @@ import { AuthService } from '../../core/services/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BlurValidatorDirective } from '../../directives/blur-validator/blur-validator';
 import { Movie } from '../../models';
+import { AutoPlayVideo } from '../../directives/autoplay/auto-play-video.directive';
 
 @Component({
   selector: 'app-edit-movie',
-  imports: [ReactiveFormsModule, CommonModule, BlurValidatorDirective],
+  imports: [ReactiveFormsModule, CommonModule, BlurValidatorDirective, AutoPlayVideo],
   templateUrl: './edit-movie.html',
   styleUrl: './edit-movie.css'
 })
