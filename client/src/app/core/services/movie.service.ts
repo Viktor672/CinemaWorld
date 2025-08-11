@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { map, Observable } from "rxjs";
 import { ApiMovie } from "../../models/api-movie.model";
 import { Movie } from "../../models";
+import { Like } from "../../models/like.model";
 
 @Injectable({
     providedIn: 'root'
@@ -49,8 +50,8 @@ export class MovieService {
         return this.httpClient.put<ApiMovie>(`${this.baseUrl}/movies/${movieId}`, movie).pipe(map((apiMovie: ApiMovie) => this.mapApiMovieToMovie(apiMovie)));
     }
 
-    deleteMovie(id: string | null): Observable<any> {
-        return this.httpClient.delete(`${this.baseUrl}/movies/${id}`);
+    deleteMovie(id: string | null): Observable<Like> {
+        return this.httpClient.delete<Like>(`${this.baseUrl}/movies/${id}`);
     }
 
     private mapApiMovieToMovie(apiMovie: ApiMovie): Movie {
