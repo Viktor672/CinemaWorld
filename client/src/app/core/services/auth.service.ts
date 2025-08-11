@@ -20,10 +20,11 @@ export class AuthService {
         }
     }
 
-    register(username: string, email: string, password: string, rePassword: string): Observable<User> {
+    register(username: string, email: string, country: string, password: string, rePassword: string): Observable<User> {
         return this.httpClient.post<User>(`${this.baseUrl}/register`, {
             username,
             email,
+            country,
             password,
             rePassword
         }).pipe(tap((newUser: User) => {
