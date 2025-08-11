@@ -5,6 +5,7 @@
         </b>
         <br />
 
+        <div class="input-group">
         <input class="register-input" [ngClass]="{'invalid-input': usernameValidationData.isInvalid}" type="text"
             id="username" name="username" placeholder="Username" [appBlurValidator]="boundValidateForm"
             formControlName="username" />
@@ -13,39 +14,43 @@
             {{usernameValidationData.errorMessage}}
         </p>
         }
+</div>
 
+        <div class="input-group">
         <input class="register-input" [ngClass]="{'invalid-input': emailValidationData.isInvalid}" type="email"
             id="email" name="email" placeholder="Email" [appBlurValidator]="boundValidateForm"
             formControlName="email" />
-        <div>
-            @if(emailValidationData.isInvalid){
-            <p class="error-message">
-                {{emailValidationData.errorMessage}}
-            </p>
-            }
+        @if(emailValidationData.isInvalid){
+        <p class="error-message">
+            {{emailValidationData.errorMessage}}
+        </p>
+        }
         </div>
 
+        <div class="input-group">
         <input class="register-input" [ngClass]="{'invalid-input': countryValidationData.isInvalid}" type="country"
             id="country" name="country" placeholder="Country" [appBlurValidator]="boundValidateForm"
             formControlName="country" />
-        <div>
-            @if(countryValidationData.isInvalid){
-            <p class="error-message">
-                {{countryValidationData.errorMessage}}
-            </p>
-            }
+        @if(countryValidationData.isInvalid){
+        <p class="error-message">
+            {{countryValidationData.errorMessage}}
+        </p>
+        }
         </div>
 
         <div formGroupName="passwords">
-            <input class="register-input" [ngClass]="{'invalid-input': passwordValidationData.isInvalid}"
-                type="password" id="password" name="password" placeholder="Password"
-                [appBlurValidator]="boundValidateForm" formControlName="password" />
-            @if(passwordValidationData.isInvalid){
-            <p class="error-message">
-                {{passwordValidationData.errorMessage}}
-            </p>
-            }
+        <div class="input-group">
+                <input class="register-input" [ngClass]="{'invalid-input': passwordValidationData.isInvalid}"
+                    type="password" id="password" name="password" placeholder="Password"
+                    [appBlurValidator]="boundValidateForm" formControlName="password" />
+                @if(passwordValidationData.isInvalid){
+                <p class="error-message">
+                    {{passwordValidationData.errorMessage}}
+                </p>
+                }
+                </div>
 
+        <div class="input-group">
             <input class="register-input" [ngClass]="{'invalid-input': rePasswordValidationData.isInvalid}"
                 type="password" id="rePassword" name="rePassword" placeholder="Repeat Password"
                 [appBlurValidator]="boundValidateForm" formControlName="rePassword" />
@@ -54,6 +59,7 @@
                 {{rePasswordValidationData.errorMessage}}
             </p>
             }
+            </div>
         </div>
 
         <button class="register-btn-submit" type="submit" [disabled]="registerForm.invalid">Register</button>
