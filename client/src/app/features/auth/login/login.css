@@ -1,5 +1,7 @@
 .login-page {
-    height: 100vh;
+    min-height: 100dvh;
+    overflow: auto;
+    padding: 50px 10px;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -29,7 +31,7 @@
     max-width: 400px;
     padding: 50px 60px;
     text-align: center;
-    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 6px 25px rgba(175, 167, 167, 0.4);
     border-radius: 16px;
 }
 
