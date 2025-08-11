@@ -4,17 +4,13 @@
         <a [routerLink]="['/movies', movie._id]" class="blog__genre">{{movie.genre}}</a>
     </div>
 
-
-
     <h3 class="blog__post-title">
         <a [routerLink]="['/movies', movie._id]" class="blog__title-btn">{{movie.title}}</a>
     </h3>
     <p class="blog__description">{{movie.description}}</p>
     <div class="blog__author">
         <div class="blog__author-info">
-            <p class="blog__author-name">
-                <a to="#">{{movie.authorEmail}}</a>
-            </p>
+            <p class="blog__author-name">{{movie.authorEmail}}</p>
         </div>
     </div>
 </article>

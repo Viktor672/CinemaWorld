@@ -87,15 +87,8 @@
     position: relative;
 }
 
-.blog__author-img {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background-color: #f9fafb;
-}
-
 .blog__author-info {
-    font-size: 0.9rem;
+    font-size: 1.1rem;
 }
 
 .blog__author-name {
@@ -106,11 +99,6 @@
 .blog__author-name a {
     text-decoration: none;
     color: inherit;
-}
-
-.blog__author-name a:hover {
-    color: #f600f6;
-    transition: color 0.3s ease-in-out;
 }
 
 .blog__author-email {
