@@ -13,7 +13,7 @@ import { AuthService } from '../../../core/services/auth.service';
   styleUrl: './login.css'
 })
 export class Login {
-loginForm!: FormGroup;
+  loginForm!: FormGroup;
   emailValidationData = { isInvalid: false, errorMessage: '' };
   passwordValidationData = { isInvalid: false, errorMessage: '' };
   formType: string = 'Login Form';
@@ -36,7 +36,7 @@ loginForm!: FormGroup;
     this.passwordValidationData = { ...this.authFormService.passwordValidator(this.loginForm, this.formType) };
   }
 
-    onSubmit(): void {
+  onSubmit(): void {
     if (this.loginForm.invalid) {
       this.authFormService.markFormAsTouched(this.loginForm);
       return;
@@ -49,7 +49,7 @@ loginForm!: FormGroup;
         this.router.navigate(['/home']);
       },
       error: (error) => {
-        alert(error.message);
+        alert('Email or password is incorrect!');
       }
     });
   }

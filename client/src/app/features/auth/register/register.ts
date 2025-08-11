@@ -57,7 +57,7 @@ export class Register implements OnInit {
         this.router.navigate(['/home']);
       },
       error: (error) => {
-        alert(error.message);
+        alert('Register failed!');
       }
     });
   }
