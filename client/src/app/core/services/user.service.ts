@@ -11,8 +11,8 @@ export class UserService {
 
     constructor(private httpClient: HttpClient) { }
 
-    like(ownerId: string | null, movieId: string | null): Observable<any> {
-        return this.httpClient.post(`${this.baseUrl}/likes`, { ownerId, movieId });
+    like(ownerId: string | null, movieId: string | null): Observable<Like> {
+        return this.httpClient.post<Like>(`${this.baseUrl}/likes`, { ownerId, movieId });
     }
 
     getLikes(movieId: string | null): Observable<number> {
