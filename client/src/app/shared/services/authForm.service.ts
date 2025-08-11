@@ -14,6 +14,7 @@ export class AuthFormService {
             return this.formBuilder.group({
                 username: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(20)]],
                 email: ['', [Validators.required, Validators.pattern(/^([a-zA-Z0-9]{4,})@(abv\.bg|gmail\.com)$/)]],
+                country: ['', [Validators.required]],
                 passwords: this.formBuilder.group({
                     password: ['', [Validators.required, Validators.minLength(8), Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/)]],
                     rePassword: ['', [Validators.required]]
@@ -41,12 +42,16 @@ export class AuthFormService {
         return form.get('email');
     }
 
+    getControlCountry(form: FormGroup) {
+        return form.get('country');
+    }
+
     getGroupPasswords(form: FormGroup) {
         return form.get('passwords') as FormGroup;
     }
 
     getControlPassword(form: FormGroup, typeForm: string) {
-        if(typeForm === 'Login Form'){
+        if (typeForm === 'Login Form') {
             return form.get('password');
         }
         return this.getGroupPasswords(form).get('password');
@@ -101,6 +106,24 @@ export class AuthFormService {
         }
     }
 
+    countryValidator(form: FormGroup): ValidationResult {
+        let countryControl = this.getControlCountry(form);
+        let isInvalid: boolean = Boolean(countryControl?.invalid && (countryControl?.touched || countryControl?.dirty));
+        let errorMessage: string = '';
+
+        if (countryControl?.errors?.['required']) {
+            errorMessage = 'Country is required!';
+        }
+        else {
+            errorMessage = '';
+        }
+
+        return {
+            isInvalid,
+            errorMessage
+        }
+    }
+
     passwordValidator(form: FormGroup, formType: string): ValidationResult {
         let hasMisMatched = null;
         let passwordsGroup = null;
@@ -109,7 +132,7 @@ export class AuthFormService {
         if (formType === 'Register Form') {
             passwordsGroup = this.getGroupPasswords(form);
             rePasswordControl = this.getControlRepassword(form);
-            
+
             let isRepasswordTouchedOrDirty = Boolean(rePasswordControl?.touched || rePasswordControl?.dirty) || null;
             hasMisMatched = Boolean(passwordsGroup?.errors?.['passwordsMismatch'] && isRepasswordTouchedOrDirty) || null;
         }
