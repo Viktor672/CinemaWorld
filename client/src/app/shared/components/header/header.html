@@ -1,23 +1,25 @@
 <header>
   <div class="nav-container">
-    <a routerLink="/home" class="brand">Home</a>
+    <a routerLink="/home" routerLinkActive="home-active" class="brand">Home</a>
 
     <div class="center-nav">
-      <a routerLink="/movies" routerLinkActive="active">Movies</a>
-      <a routerLink="/about" routerLinkActive="active">About</a>
+      <a routerLink="/movies" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+        class="active">Movies</a>
+      <a routerLink="/about" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">About</a>
       @if(currentUser()) {
-      <a routerLink="/add-movie" routerLinkActive="active">Add Movie</a>
-      <a routerLink="/profile" routerLinkActive="active">Profile</a>
+      <a routerLink="/add-movie" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Add Movie</a>
+      <a routerLink="/profile" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Profile</a>
       }
     </div>
 
     <div class="auth-nav">
       @if(currentUser()) {
-      <a routerLink="/logout" routerLinkActive="active" (click)="logout()">Logout</a>
+      <a routerLink="/logout" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+        (click)="logout()">Logout</a>
       }
       @else{
-      <a routerLink="/login" routerLinkActive="active">Login</a>
-      <a routerLink="/register" routerLinkActive="active">Register</a>
+      <a routerLink="/login" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Login</a>
+      <a routerLink="/register" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Register</a>
       }
     </div>
   </div>
