@@ -5,24 +5,29 @@
         </b>
         <br />
 
-        <input class="login-input" [ngClass]="{'invalid-input': emailValidationData.isInvalid}" type="email" id="email"
-            name="email" placeholder="Email" [appBlurValidator]="boundValidateForm" formControlName="email" />
-        <div>
-            @if(emailValidationData.isInvalid){
+        <!-- <div> -->
+            <input class="login-input" [ngClass]="{'invalid-input': emailValidationData.isInvalid}" type="email"
+                id="email" name="email" placeholder="Email" [appBlurValidator]="boundValidateForm"
+                formControlName="email" />
+            <div>
+                @if(emailValidationData.isInvalid){
+                <p class="error-message">
+                    {{emailValidationData.errorMessage}}
+                </p>
+                }
+            </div>
+        <!-- </div> -->
+
+        <!-- <div> -->
+            <input class="login-input" [ngClass]="{'invalid-input': passwordValidationData.isInvalid}" type="password"
+                id="password" name="password" placeholder="Password" [appBlurValidator]="boundValidateForm"
+                formControlName="password" />
+            @if(passwordValidationData.isInvalid){
             <p class="error-message">
-                {{emailValidationData.errorMessage}}
+                {{passwordValidationData.errorMessage}}
             </p>
             }
-        </div>
-
-        <input class="login-input" [ngClass]="{'invalid-input': passwordValidationData.isInvalid}" type="password"
-            id="password" name="password" placeholder="Password" [appBlurValidator]="boundValidateForm"
-            formControlName="password" />
-        @if(passwordValidationData.isInvalid){
-        <p class="error-message">
-            {{passwordValidationData.errorMessage}}
-        </p>
-        }
+        <!-- </div> -->
 
         <button class="login-btn-submit" type="submit" [disabled]="loginForm.invalid">Login</button>
         <p class="message">
