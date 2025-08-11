@@ -3,6 +3,7 @@ import { About } from './features/about/about';
 import { PageNotFound } from './shared/components';
 import { authGuard } from './core/guards/auth.guard';
 import { movieOwnerGuard } from './core/guards/movie-owner.guard';
+import { guestGuard } from './core/guards/guest.guard';
 
 export const routes: Routes = [
     {
@@ -34,11 +35,13 @@ export const routes: Routes = [
     },
     {
         path: 'register',
-        loadComponent: () => import('./features/auth/register/register').then(component => component.Register)
+        loadComponent: () => import('./features/auth/register/register').then(component => component.Register),
+        canActivate: [guestGuard]
     },
     {
         path: 'login',
-        loadComponent: () => import('./features/auth/login/login').then(component => component.Login)
+        loadComponent: () => import('./features/auth/login/login').then(component => component.Login),
+        canActivate: [guestGuard]
     },
     {
         path: 'profile',
