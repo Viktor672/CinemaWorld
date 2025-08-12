@@ -1,5 +1,5 @@
 import { CommonModule, DatePipe } from '@angular/common';
-import { Component, inject, OnDestroy, OnInit, signal, WritableSignal } from '@angular/core';
+import { AfterViewInit, Component, inject, OnDestroy, OnInit, signal, WritableSignal } from '@angular/core';
 import { Movie } from '../../../models';
 import { Subscription } from 'rxjs';
 import { MovieService } from '../../../core/services/movie.service';
@@ -13,7 +13,7 @@ import { UserService } from '../../../core/services/user.service';
   templateUrl: './movie-details.html',
   styleUrl: './movie-details.css'
 })
-export class MovieDetails implements OnInit, OnDestroy {
+export class MovieDetails implements OnInit, OnDestroy, AfterViewInit {
   private activeRoute = inject(ActivatedRoute);
   private router = inject(Router);
   private movieService = inject(MovieService);
@@ -60,12 +60,6 @@ export class MovieDetails implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.activeRoute.queryParams.subscribe(params => {
-      if (params['alert'] === 'movie-owner') {
-        alert('You are not the owner of this movie!');
-      }
-    });
-
     this.id = this.currentUser()?._id;
 
     this.subscriptions.push(this.movieService.getMovie(this.movieId).subscribe((response: Movie) => {
@@ -78,6 +72,14 @@ export class MovieDetails implements OnInit, OnDestroy {
     this.subscriptions.push(this.userService.getLikes(this.movieId).subscribe((response: number) => {
       this.likesCounter.set(response);
     }));
+  }
+
+  ngAfterViewInit(): void {
+    this.activeRoute.queryParams.subscribe(params => {
+      if (params['alert'] === 'movie-owner') {
+        alert('You are not the owner of this movie!');
+      }
+    });
   }
 
   ngOnDestroy(): void {

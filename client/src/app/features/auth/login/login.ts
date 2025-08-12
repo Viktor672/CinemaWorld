@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { BlurValidatorDirective } from '../../../directives/blur-validator/blur-validator';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
@@ -12,7 +12,7 @@ import { AuthService } from '../../../core/services/auth.service';
   templateUrl: './login.html',
   styleUrl: './login.css'
 })
-export class Login {
+export class Login implements OnInit, AfterViewInit {
   loginForm!: FormGroup;
   emailValidationData = { isInvalid: false, errorMessage: '' };
   passwordValidationData = { isInvalid: false, errorMessage: '' };
@@ -22,18 +22,20 @@ export class Login {
   constructor(private authFormService: AuthFormService, private authService: AuthService, private router: Router, private activeRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.activeRoute.queryParams.subscribe(params => {
-      if (params['alert'] === 'auth') {
-        alert('You must be logged in to be able to go to this page');
-      }
-    });
-
     this.boundValidateForm = this.validateForm.bind(this);
     this.loginForm = this.authFormService.createForm(this.formType);
 
     this.loginForm.statusChanges.subscribe(() => {
       this.validateForm();
       console.log(this.emailValidationData.isInvalid);
+    });
+  }
+
+  ngAfterViewInit(): void {
+     this.activeRoute.queryParams.subscribe(params => {
+      if (params['alert'] === 'auth') {
+        alert('You must be logged in to be able to go to this page');
+      }
     });
   }
 

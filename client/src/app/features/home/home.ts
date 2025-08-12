@@ -8,10 +8,10 @@ import { AutoPlayVideo } from '../../directives/autoplay/auto-play-video.directi
   templateUrl: './home.html',
   styleUrl: './home.css'
 })
-export class Home implements OnInit {
+export class Home implements AfterViewInit {
   constructor(private activeRoute: ActivatedRoute) { }
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
     this.activeRoute.queryParams.subscribe(params => {
       if (params['alert'] === 'guest') {
         alert('You are already logged in!');
