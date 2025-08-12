@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from "@angular/forms";
 import { ValidationResult } from "../../models";
 
 @Injectable({
@@ -13,7 +13,7 @@ export class MovieFormService {
             title: ['', [Validators.required]],
             genre: ['', [Validators.required, Validators.minLength(3)]],
             description: ['', [Validators.required, Validators.minLength(20), Validators.maxLength(250)]],
-            imageUrl: ['', [Validators.required, Validators.pattern(/^(https?:\/\/.+)$/)]],
+            imageUrl: [null, this.requiredImageData.bind(this)],
             releaseDate: ['', [Validators.required]]
         });
     }
@@ -106,11 +106,11 @@ export class MovieFormService {
         let isInvalid: boolean = Boolean(imageUrlControl?.invalid && (imageUrlControl?.touched || imageUrlControl?.dirty));
         let errorMessage: string = '';
 
-        if (imageUrlControl?.errors?.['required']) {
-            errorMessage = 'Cover Url is required!';
+        if (imageUrlControl?.errors?.['requiredImage']) {
+            errorMessage = 'You must upload a file';
         }
-        else if (imageUrlControl?.errors?.['pattern']) {
-            errorMessage = 'Please enter a valid http or https Cover URL!';
+        else if (imageUrlControl?.errors?.['invalidImageDataUrl']) {
+            errorMessage = 'Invalid image data!';
         }
         else {
             errorMessage = '';
@@ -138,6 +138,14 @@ export class MovieFormService {
             isInvalid,
             errorMessage
         }
+    }
+
+     private requiredImageData(imageUrlControl: AbstractControl): ValidationErrors | null {
+        let value = imageUrlControl.value;
+        console.log(value);
+        if (!value) return { requiredImage: true };
+        if (!value.startsWith('data:image/')) return { invalidImageDataUrl: true };
+        return null;
     }
 
     markFormAsTouched(form: FormGroup): void {
