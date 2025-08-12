@@ -1,5 +1,5 @@
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { AutoPlayVideo } from '../../directives/autoplay/auto-play-video.directive';
 
 @Component({
@@ -8,4 +8,14 @@ import { AutoPlayVideo } from '../../directives/autoplay/auto-play-video.directi
   templateUrl: './home.html',
   styleUrl: './home.css'
 })
-export class Home {}
+export class Home implements OnInit {
+  constructor(private activeRoute: ActivatedRoute) { }
+
+  ngOnInit(): void {
+    this.activeRoute.queryParams.subscribe(params => {
+      if (params['alert'] === 'guest') {
+        alert('You are already logged in!');
+      }
+    });
+  }
+}

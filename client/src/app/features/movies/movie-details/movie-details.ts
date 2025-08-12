@@ -60,6 +60,12 @@ export class MovieDetails implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.activeRoute.queryParams.subscribe(params => {
+      if (params['alert'] === 'movie-owner') {
+        alert('You are not the owner of this movie!');
+      }
+    });
+
     this.id = this.currentUser()?._id;
 
     this.subscriptions.push(this.movieService.getMovie(this.movieId).subscribe((response: Movie) => {

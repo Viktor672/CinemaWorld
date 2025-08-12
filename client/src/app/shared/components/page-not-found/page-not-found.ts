@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-page-not-found',
@@ -7,6 +7,14 @@ import { RouterLink } from '@angular/router';
   templateUrl: './page-not-found.html',
   styleUrl: './page-not-found.css'
 })
-export class PageNotFound {
+export class PageNotFound implements OnInit {
+  constructor(private activeRoute: ActivatedRoute) { }
 
+  ngOnInit(): void {
+    this.activeRoute.queryParams.subscribe(params => {
+      if (params['alert'] === 'movie-owner') {
+        alert('This movie does not exist');
+      }
+    });
+  }
 }

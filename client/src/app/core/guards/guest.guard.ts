@@ -6,5 +6,12 @@ export const guestGuard: CanActivateFn = () => {
     let router = inject(Router);
     let authService = inject(AuthService);
 
-    return Boolean(!authService.currentUser()?._id) ? true : router.navigateByUrl('/home');
+    if (Boolean(!authService.currentUser()?._id)) {
+        return true;
+    }
+    else {
+        return router.createUrlTree(['/home'], {
+            queryParams: { alert: 'guest' }
+        });
+    }
 }
