@@ -86,18 +86,49 @@ h1 {
     box-shadow: 0 0 5px rgba(202, 47, 55, 0.6) !important;
 }
 
-.cover-preview {
-    display: block;
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
+.file-input::file-selector-button {
+    margin-right: 12px;
+    padding: 8px 14px;
+    border: none;
     border-radius: 8px;
-    border: 2px solid #66fcf1;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-    margin-top: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    background: #ff9500;
+    color: #ffffff;
+    cursor: pointer;
+    transition: transform .15s ease, background-color .25s ease, opacity .25s ease;
 }
 
+.file-input:hover::file-selector-button {
+    background: #ffb20b;
+}
+
+.preview-container {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.preview-img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+}
+
+@media (max-width: 480px) {
+    .preview-img {
+        width: 96px;
+        height: 96px;
+    }
+
+    .file-input::file-selector-button {
+        padding: 7px 12px;
+        font-size: 13px;
+    }
+}
 
 .submit-btn {
     width: 100%;

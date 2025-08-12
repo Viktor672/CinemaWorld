@@ -21,18 +21,44 @@ export class AddMovie {
   descriptionValidationData = { isInvalid: false, errorMessage: '' };
   imageUrlValidationData = { isInvalid: false, errorMessage: '' };
   releaseDateValidationData = { isInvalid: false, errorMessage: '' };
+  previewUrl: string | null = null;
+  selectedFileName: string | null = null;
   boundValidateForm!: () => void;
 
   constructor(private movieFormService: MovieFormService, private movieService: MovieService, private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     this.boundValidateForm = this.validateForm.bind(this);
-    // this.addMovieForm.statusChanges.subscribe(this.boundValidateForm);
     this.addMovieForm = this.movieFormService.createForm();
 
     this.addMovieForm.statusChanges.subscribe(() => {
       this.validateForm();
     });
+  }
+
+  onFileChange(event: Event) {
+    let input = event.target as HTMLInputElement;
+
+    let file = input.files?.[0] || null;
+    this.selectedFileName = file ? file.name : null;
+
+    if (!file) {
+      this.previewUrl = null;
+      this.addMovieForm.patchValue({ imageUrl: null });
+      this.addMovieForm.get('imageUrl')?.updateValueAndValidity({ emitEvent: true });
+      return;
+    }
+
+    let fileReader = new FileReader();
+
+    fileReader.onload = (e) => {
+      let dataUrl = e.target?.result as string;
+      this.previewUrl = dataUrl;
+      this.addMovieForm.patchValue({ imageUrl: dataUrl });
+      this.addMovieForm.get('imageUrl')?.updateValueAndValidity({ emitEvent: true });
+    };
+
+    fileReader.readAsDataURL(file);
   }
 
   validateForm(): void {
@@ -48,9 +74,9 @@ export class AddMovie {
       this.movieFormService.markFormAsTouched(this.addMovieForm);
       return;
     }
-    
+
     let authorEmail = this.authService.currentUser()?.email;
-    
+
     let { title, genre, description, imageUrl, releaseDate } = this.addMovieForm.value;
 
     this.movieService.addMovie(authorEmail, title, genre, description, imageUrl, releaseDate).subscribe({
@@ -58,7 +84,7 @@ export class AddMovie {
         this.router.navigate(['/movies']);
       },
       error: (error) => {
-        alert(error.message);
+        alert(error.error);
       }
     });
   }
