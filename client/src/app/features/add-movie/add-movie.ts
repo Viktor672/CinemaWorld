@@ -22,7 +22,6 @@ export class AddMovie {
   imageUrlValidationData = { isInvalid: false, errorMessage: '' };
   releaseDateValidationData = { isInvalid: false, errorMessage: '' };
   previewUrl: string | null = null;
-  selectedFileName: string | null = null;
   boundValidateForm!: () => void;
 
   constructor(private movieFormService: MovieFormService, private movieService: MovieService, private authService: AuthService, private router: Router) { }
@@ -36,16 +35,28 @@ export class AddMovie {
     });
   }
 
+  validateForm(): void {
+    this.titleValidationData = { ...this.movieFormService.titleValidator(this.addMovieForm) };
+    this.genreValidationData = { ...this.movieFormService.genreValidator(this.addMovieForm) };
+    this.descriptionValidationData = { ...this.movieFormService.descriptionValidator(this.addMovieForm) };
+    this.imageUrlValidationData = { ...this.movieFormService.imageUrlValidator(this.addMovieForm) };
+    this.releaseDateValidationData = { ...this.movieFormService.releaseDateValidator(this.addMovieForm) };
+  }
+
   onFileChange(event: Event) {
     let input = event.target as HTMLInputElement;
 
     let file = input.files?.[0] || null;
-    this.selectedFileName = file ? file.name : null;
+    let imageUrlControl = this.addMovieForm.get('imageUrl');
 
     if (!file) {
       this.previewUrl = null;
       this.addMovieForm.patchValue({ imageUrl: null });
-      this.addMovieForm.get('imageUrl')?.updateValueAndValidity({ emitEvent: true });
+
+      imageUrlControl?.markAsDirty();
+      imageUrlControl?.markAsTouched();
+      imageUrlControl?.updateValueAndValidity({ emitEvent: true });
+      input.blur();
       return;
     }
 
@@ -55,18 +66,24 @@ export class AddMovie {
       let dataUrl = e.target?.result as string;
       this.previewUrl = dataUrl;
       this.addMovieForm.patchValue({ imageUrl: dataUrl });
-      this.addMovieForm.get('imageUrl')?.updateValueAndValidity({ emitEvent: true });
+
+      imageUrlControl?.markAsDirty();
+      imageUrlControl?.markAsTouched();
+      imageUrlControl?.updateValueAndValidity({ emitEvent: true });
     };
 
     fileReader.readAsDataURL(file);
   }
 
-  validateForm(): void {
-    this.titleValidationData = { ...this.movieFormService.titleValidator(this.addMovieForm) };
-    this.genreValidationData = { ...this.movieFormService.genreValidator(this.addMovieForm) };
-    this.descriptionValidationData = { ...this.movieFormService.descriptionValidator(this.addMovieForm) };
-    this.imageUrlValidationData = { ...this.movieFormService.imageUrlValidator(this.addMovieForm) };
-    this.releaseDateValidationData = { ...this.movieFormService.releaseDateValidator(this.addMovieForm) };
+  onFileClick() {
+    let imageUrlControl = this.addMovieForm.get('imageUrl');
+    setTimeout(() => {
+      let fileInput = document.getElementById('movie-cover') as HTMLInputElement;
+      if (fileInput.files?.length === 0) {
+        imageUrlControl?.markAsTouched();
+        imageUrlControl?.updateValueAndValidity({ emitEvent: true });
+      }
+    }, 200);
   }
 
   onSubmit(): void {
