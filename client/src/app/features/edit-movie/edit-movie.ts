@@ -28,7 +28,8 @@ export class EditMovie {
   previewUrl: string | null = null;
   boundValidateForm!: () => void;
 
-  constructor(private movieFormService: MovieFormService, private movieService: MovieService, private authService: AuthService, private router: Router, private activeRoute: ActivatedRoute, private toast: ToastService) { }
+  constructor(private movieFormService: MovieFormService, private movieService: MovieService, private authService: AuthService,
+    private router: Router, private activeRoute: ActivatedRoute, private toast: ToastService) { }
 
   ngOnInit(): void {
     this.boundValidateForm = this.validateForm.bind(this);
