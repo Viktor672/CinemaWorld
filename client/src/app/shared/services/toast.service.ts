@@ -11,7 +11,7 @@ export class ToastService {
     private createDivContainer() {
         this.divContainer = document.createElement('div');
         this.divContainer.style.position = 'fixed';
-        this.divContainer.style.top = '20px';
+        this.divContainer.style.top = '80px';
         this.divContainer.style.left = '50%';
         this.divContainer.style.transform = 'translateX(-50%)';
         this.divContainer.style.zIndex = '9999';
@@ -36,7 +36,6 @@ export class ToastService {
         }
         toast.style.color = 'white';
         toast.style.padding = '10px 16px';
-        toast.style.marginTop = '80px';
         toast.style.borderRadius = '6px';
         toast.style.boxShadow = '0 4px 8px rgba(0,0,0,0.2)';
         toast.style.fontFamily = 'Arial, sans-serif';
