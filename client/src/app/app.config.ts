@@ -4,13 +4,13 @@ import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { AuthInterceptor } from './core/interceptors/auth/auth-interceptor';
-import { NotFoundHttpInterceptor } from './core/interceptors/error/not-found-http-interceptor';
+import { ErrorInterceptor } from './core/interceptors/error/error-interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
-    provideHttpClient(withInterceptors([NotFoundHttpInterceptor, AuthInterceptor]))
+    provideHttpClient(withInterceptors([ErrorInterceptor, AuthInterceptor]))
   ]
 };
