@@ -24,13 +24,13 @@ export class EditMovie {
   descriptionValidationData = { isInvalid: false, errorMessage: '' };
   imageUrlValidationData = { isInvalid: false, errorMessage: '' };
   releaseDateValidationData = { isInvalid: false, errorMessage: '' };
+  previewUrl: string | null = null;
   boundValidateForm!: () => void;
 
   constructor(private movieFormService: MovieFormService, private movieService: MovieService, private authService: AuthService, private router: Router, private activeRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.boundValidateForm = this.validateForm.bind(this);
-    // this.addMovieForm.statusChanges.subscribe(this.boundValidateForm);
     this.editMovieForm = this.movieFormService.createForm();
 
     this.editMovieForm.statusChanges.subscribe(() => {
@@ -39,14 +39,17 @@ export class EditMovie {
 
     this.movieId = this.activeRoute.snapshot.paramMap.get('id');
 
-    this.movieService.getMovie(this.movieId).subscribe((movie: Movie) => this.editMovieForm.patchValue({
-      authorEmail: movie.authorEmail,
-      title: movie.title,
-      genre: movie.genre,
-      description: movie.description,
-      imageUrl: movie.imageUrl,
-      releaseDate: movie.releaseDate
-    }));
+    this.movieService.getMovie(this.movieId).subscribe((movie: Movie) => {
+      this.editMovieForm.patchValue({
+        authorEmail: movie.authorEmail,
+        title: movie.title,
+        genre: movie.genre,
+        description: movie.description,
+        imageUrl: movie.imageUrl,
+        releaseDate: movie.releaseDate
+      });
+      this.previewUrl = movie.imageUrl;
+    });
   }
 
   validateForm(): void {
@@ -55,6 +58,35 @@ export class EditMovie {
     this.descriptionValidationData = { ...this.movieFormService.descriptionValidator(this.editMovieForm) };
     this.imageUrlValidationData = { ...this.movieFormService.imageUrlValidator(this.editMovieForm) };
     this.releaseDateValidationData = { ...this.movieFormService.releaseDateValidator(this.editMovieForm) };
+  }
+
+  onFileChange(event: Event) {
+    let input = event.target as HTMLInputElement;
+
+    let file = input.files?.[0] || null;
+    let imageUrlControl = this.editMovieForm.get('imageUrl');
+
+    if (!file) {
+      this.previewUrl = null;
+      this.editMovieForm.patchValue({ imageUrl: null });
+      imageUrlControl?.updateValueAndValidity({ emitEvent: true });
+      input.blur();
+      return;
+    }
+
+    let fileReader = new FileReader();
+
+    fileReader.onload = (e) => {
+      let dataUrl = e.target?.result as string;
+      this.previewUrl = dataUrl;
+      this.editMovieForm.patchValue({ imageUrl: dataUrl });
+
+      imageUrlControl?.markAsDirty();
+      imageUrlControl?.markAsTouched();
+      imageUrlControl?.updateValueAndValidity({ emitEvent: true });
+    };
+
+    fileReader.readAsDataURL(file);
   }
 
   onSubmit(): void {
