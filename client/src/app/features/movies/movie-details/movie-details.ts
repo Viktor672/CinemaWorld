@@ -6,10 +6,11 @@ import { MovieService } from '../../../core/services/movie.service';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../core/services/auth.service';
 import { UserService } from '../../../core/services/user.service';
+import { LimitTextPipe } from '../../../shared/pipes/limit-text.pipe';
 
 @Component({
   selector: 'app-movie-details',
-  imports: [CommonModule, RouterLink, DatePipe],
+  imports: [CommonModule, RouterLink, DatePipe, LimitTextPipe],
   templateUrl: './movie-details.html',
   styleUrl: './movie-details.css'
 })

@@ -4,7 +4,7 @@ import { Pipe, PipeTransform } from "@angular/core";
     name: 'limitText'
 })
 export class LimitTextPipe implements PipeTransform {
-    transform(value: string, maxLength: number = 40): string {
+    transform(value: string | undefined, maxLength: number = 40): string {
         if (!value) {
             return '';
         }

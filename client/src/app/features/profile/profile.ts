@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../core/services/user.service';
 import { User } from '../../models';
 import { Subscription } from 'rxjs';
-import { RouterLink } from '@angular/router';
+import { LimitTextPipe } from '../../shared/pipes/limit-text.pipe';
 
 @Component({
   selector: 'app-profile',
-  imports: [],
+  imports: [LimitTextPipe],
   templateUrl: './profile.html',
   styleUrl: './profile.css'
 })

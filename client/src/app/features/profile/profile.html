@@ -4,15 +4,15 @@
       <h1>Profile</h1>
       <div class="field">
         <span class="label">Username</span>
-        <span class="value">{{ user?.username || '—' }}</span>
+        <span class="value">{{ (user?.username) || '—' }}</span>
       </div>
       <div class="field">
         <span class="label">Email</span>
-        <span class="value">{{ user?.email || '—' }}</span>
+        <span class="value">{{ (user?.email | limitText: 20) || '—' }}</span>
       </div>
       <div class="field">
         <span class="label">Country</span>
-        <span class="value">{{ user?.country || '—' }}</span>
+        <span class="value">{{ (user?.country | limitText: 20) || '—' }}</span>
       </div>
     </div>
   </section>

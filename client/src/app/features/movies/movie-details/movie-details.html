@@ -1,7 +1,7 @@
 <div class="details" [ngStyle]="backgroundImageStyle">
     <div class="details__container">
-        <h1 class="details__title">{{movie?.title}}</h1>
-        <p class="details__date">{{movie?.releaseDate | date:'longDate'}} | {{movie?.genre}}</p>
+        <h1 class="details__title">{{movie?.title | limitText:15}}</h1>
+        <p class="details__date">{{movie?.releaseDate | date:'longDate'}} | {{movie?.genre | limitText}}</p>
         <p class="details__description">{{movie?.description}}</p>
 
         <div class="details__author-container">
