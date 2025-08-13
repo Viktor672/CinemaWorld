@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { BlurValidatorDirective } from '../../directives/blur-validator/blur-validator';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../core/services/auth.service';
+import { ToastService } from '../../shared/services/toast.service';
 
 @Component({
   selector: 'app-add-movie',
@@ -24,7 +25,7 @@ export class AddMovie {
   previewUrl: string | null = null;
   boundValidateForm!: () => void;
 
-  constructor(private movieFormService: MovieFormService, private movieService: MovieService, private authService: AuthService, private router: Router) { }
+  constructor(private movieFormService: MovieFormService, private movieService: MovieService, private authService: AuthService, private router: Router, private toast: ToastService) { }
 
   ngOnInit(): void {
     this.boundValidateForm = this.validateForm.bind(this);
@@ -99,6 +100,7 @@ export class AddMovie {
     this.movieService.addMovie(authorEmail, title, genre, description, imageUrl, releaseDate).subscribe({
       next: () => {
         this.router.navigate(['/movies']);
+        this.toast.show('Added Movie successfully!', 'success');
       },
       error: (error) => {
         alert(error.error);

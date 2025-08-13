@@ -5,6 +5,7 @@ import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../../../core/services/auth.service';
 import { CommonModule } from '@angular/common';
 import { BlurValidatorDirective } from '../../../directives/blur-validator/blur-validator';
+import { ToastService } from '../../../shared/services/toast.service';
 
 
 @Component({
@@ -23,7 +24,7 @@ export class Register implements OnInit {
   formType: string = 'Register Form';
   boundValidateForm!: () => void;
 
-  constructor(private authFormService: AuthFormService, private authService: AuthService, private router: Router) { }
+  constructor(private authFormService: AuthFormService, private authService: AuthService, private router: Router, private toast: ToastService) { }
 
   ngOnInit(): void {
     this.boundValidateForm = this.validateForm.bind(this);
@@ -55,9 +56,10 @@ export class Register implements OnInit {
     this.authService.register(username, email, country, password, rePassword).subscribe({
       next: () => {
         this.router.navigate(['/home']);
+        this.toast.show('Register successful!', 'success');
       },
       error: (error) => {
-        alert('Register failed!');
+        this.toast.show('Register failed!', 'error');
       }
     });
   }

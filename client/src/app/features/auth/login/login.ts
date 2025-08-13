@@ -5,6 +5,7 @@ import { BlurValidatorDirective } from '../../../directives/blur-validator/blur-
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { AuthFormService } from '../../../shared/services/authForm.service';
 import { AuthService } from '../../../core/services/auth.service';
+import { ToastService } from '../../../shared/services/toast.service';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,7 @@ export class Login implements OnInit, AfterViewInit {
   formType: string = 'Login Form';
   boundValidateForm!: () => void;
 
-  constructor(private authFormService: AuthFormService, private authService: AuthService, private router: Router, private activeRoute: ActivatedRoute) { }
+  constructor(private authFormService: AuthFormService, private authService: AuthService, private router: Router, private activeRoute: ActivatedRoute, private toast: ToastService) { }
 
   ngOnInit(): void {
     this.boundValidateForm = this.validateForm.bind(this);
@@ -32,9 +33,9 @@ export class Login implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-     this.activeRoute.queryParams.subscribe(params => {
+    this.activeRoute.queryParams.subscribe(params => {
       if (params['alert'] === 'auth') {
-        alert('You must be logged in to be able to go to this page');
+        this.toast.show('You must be logged in to be able to go to this page!', 'error');
       }
     });
   }
@@ -55,9 +56,10 @@ export class Login implements OnInit, AfterViewInit {
     this.authService.login(email, password).subscribe({
       next: () => {
         this.router.navigate(['/home']);
+        this.toast.show('Successful Login!', 'success');
       },
       error: (error) => {
-        alert('Email or password is incorrect!');
+        this.toast.show('Email or password is incorrect!', 'error');
       }
     });
   }

@@ -8,6 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { BlurValidatorDirective } from '../../directives/blur-validator/blur-validator';
 import { Movie } from '../../models';
 import { AutoPlayVideo } from '../../directives/autoplay/auto-play-video.directive';
+import { ToastService } from '../../shared/services/toast.service';
 
 @Component({
   selector: 'app-edit-movie',
@@ -27,7 +28,7 @@ export class EditMovie {
   previewUrl: string | null = null;
   boundValidateForm!: () => void;
 
-  constructor(private movieFormService: MovieFormService, private movieService: MovieService, private authService: AuthService, private router: Router, private activeRoute: ActivatedRoute) { }
+  constructor(private movieFormService: MovieFormService, private movieService: MovieService, private authService: AuthService, private router: Router, private activeRoute: ActivatedRoute, private toast: ToastService) { }
 
   ngOnInit(): void {
     this.boundValidateForm = this.validateForm.bind(this);
@@ -102,6 +103,7 @@ export class EditMovie {
     this.movieService.editMovie(authorEmail, title, genre, description, imageUrl, releaseDate, this.movieId).subscribe({
       next: () => {
         this.router.navigate(['/movies', this.movieId]);
+        this.toast.show('Movie was edited successfuly!', 'success');
       },
       error: (error) => {
         alert(error.message);

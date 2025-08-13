@@ -7,6 +7,7 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../core/services/auth.service';
 import { UserService } from '../../../core/services/user.service';
 import { LimitTextPipe } from '../../../shared/pipes/limit-text.pipe';
+import { ToastService } from '../../../shared/services/toast.service';
 
 @Component({
   selector: 'app-movie-details',
@@ -16,6 +17,7 @@ import { LimitTextPipe } from '../../../shared/pipes/limit-text.pipe';
 })
 export class MovieDetails implements OnInit, OnDestroy, AfterViewInit {
   private activeRoute = inject(ActivatedRoute);
+  private toast = inject(ToastService)
   private router = inject(Router);
   private movieService = inject(MovieService);
   private userService = inject(UserService);
@@ -48,6 +50,7 @@ export class MovieDetails implements OnInit, OnDestroy, AfterViewInit {
     else {
       this.subscriptions.push(this.movieService.deleteMovie(this.movieId).subscribe(() => {
         this.router.navigateByUrl('/movies');
+        this.toast.show('Movie was deleted successfully!', 'success');
       }));
     }
   }
@@ -78,7 +81,7 @@ export class MovieDetails implements OnInit, OnDestroy, AfterViewInit {
   ngAfterViewInit(): void {
     this.activeRoute.queryParams.subscribe(params => {
       if (params['alert'] === 'movie-owner') {
-        alert('You are not the owner of this movie!');
+        this.toast.show('You are not the owner of this movie!', 'error');
       }
     });
   }
