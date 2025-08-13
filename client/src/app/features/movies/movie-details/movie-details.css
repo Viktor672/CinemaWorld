@@ -58,6 +58,8 @@
     max-width: 700px;
     margin-left: auto;
     margin-right: auto;
+    white-space: normal;
+  word-break: break-word;
 }
 
 .details__author-container {
