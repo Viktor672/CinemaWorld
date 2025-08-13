@@ -58,15 +58,13 @@
             <div class="input-group file-upload">
                 <label for="movie-cover" class="file-label">Cover Image</label>
 
-                <input id="movie-cover" type="file" accept="image/*" class="input-field file-input"
-                    [appBlurValidator]="boundValidateForm" (change)="onFileChange($event)" />
-
+                <input id="movie-cover" type="file" accept="image/*" class="input-field file-input" (click)="onFileClick()"
+                 (change)="onFileChange($event)" />
                 @if(previewUrl){
                 <div class="preview-container">
                     <img [src]="previewUrl" alt="preview" class="preview-img" />
-                </div>
+                </div> 
                 }
-
                 @if(imageUrlValidationData.isInvalid) {
                 {{ imageUrlValidationData.errorMessage }}
                 }
