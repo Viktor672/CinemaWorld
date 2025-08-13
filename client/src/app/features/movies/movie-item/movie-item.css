@@ -6,7 +6,7 @@
   box-shadow: 0 8px 20px rgba(0,0,0,0.08);
   transition: transform .2s ease, box-shadow .2s ease;
   margin-top: 40px;
-  height: 340px;
+  height: 320px;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -77,6 +77,8 @@
   color: #ffffff;
   z-index: 2;
   position: relative;
+    white-space: normal;
+  word-break: break-word;
 }
 
 .blog__author {
