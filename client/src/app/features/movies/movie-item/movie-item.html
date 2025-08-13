@@ -1,11 +1,11 @@
 <article class="blog__post" [ngStyle]="backgroundImgStyle">
     <div class="blog__meta">
         <time class="blog__date">{{movie.releaseDate | date:'longDate'}}</time>
-        <a [routerLink]="['/movies', movie._id]" class="blog__genre">{{movie.genre | limitText}}</a>
+        <a [routerLink]="['/movies', movie._id]" class="blog__genre">{{movie.genre | limitText:20}}</a>
     </div>
 
     <h3 class="blog__post-title">
-        <a [routerLink]="['/movies', movie._id]" class="blog__title-btn">{{movie.title | limitText}}</a>
+        <a [routerLink]="['/movies', movie._id]" class="blog__title-btn">{{movie.title | limitText:20}}</a>
     </h3>
     <p class="blog__description">{{movie.description}}</p>
     <div class="blog__author">
